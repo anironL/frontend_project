@@ -1,7 +1,9 @@
 import './App.css';
 import MapPoints from './components/MapPoints';
 import useGeolocation from './hooks/useGeolocation';
-import { findDistance } from './helpers/map_helpers';
+import { filterDistance } from './helpers/map_helpers';
+
+import { useState } from 'react'
 
 export const pois = [
   { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426 },
@@ -30,8 +32,35 @@ export const pois = [
 ];
 
 function App() {
+  const [search, setSearch] = useState("")
 
-const location = useGeolocation();
+  const location = useGeolocation();
+
+  return (
+    <section>
+    <h1> Finding distance around: </h1>
+    <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
+      Search (km): 
+      <input 
+        onChange={(e => setSearch(e.target.value))} 
+        placeholder='Search Distance' 
+        />   
+
+    <div className="App">
+
+      <header className="App-header">
+        <MapPoints
+          pois = {filterDistance(pois[0], pois, search)}
+          location = {location}
+        />
+      </header>
+    
+    </div>
+    </section>
+  );
+}
+
+export default App;
 
 // Geolocation snap to map area
 // const snapToLocation = () => {
@@ -43,26 +72,4 @@ const location = useGeolocation();
 //   } else {
 //     alert(location.error.message)
 //   }
-// }
-
-  return (
-    <section>
-    <h1> Finding distance around: </h1>
-    <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
-    <p> {findDistance(pois[0], pois, 2000)} </p>
-
-    <div className="App">
-
-      <header className="App-header">
-        <MapPoints
-          pois = {pois}
-          location = {location}
-        />
-      </header>
-    
-    </div>
-    </section>
-  );
-}
-
-export default App;
+// } 
