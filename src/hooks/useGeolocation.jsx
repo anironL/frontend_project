@@ -39,7 +39,7 @@ export default function useGeolocation() {
     }  
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError)
-  }, [])
+  }, [location])
 
   return location
 }

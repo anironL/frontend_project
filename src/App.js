@@ -31,6 +31,18 @@ export const pois = [
 function App() {
 
 const location = useGeolocation();
+
+// Geolocation snap to map area
+// const snapToLocation = () => {
+//   if (location.loaded && !location.error) {
+//     mapRef.current.leafletElement.flyTo(
+//       [ location.coordinates.latitude, location.coordinates.longitude ], 
+//       15, //ZOOM_LEVEL
+//       {animate: true})
+//   } else {
+//     alert(location.error.message)
+//   }
+// }
   
 
   return (
