@@ -4,3 +4,4 @@ export function getMapBounds(mapPoints){
     boundsArray.push([point.latitude, point.longitude]));
   return boundsArray;
 }
+
