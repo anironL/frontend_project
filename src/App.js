@@ -43,17 +43,44 @@ const location = useGeolocation();
 //     alert(location.error.message)
 //   }
 // }
+
+const findDistance = (point, pois, distanceFilter) => {
+  // console.log(point.latitude)
+  // console.log(point.longitude)
+  let poiArray = []
+  let origin = Math.abs(point.latitude) + Math.abs(point.longitude)
+  // console.log(origin)
+
+  for (let poi of pois) {
+    let distance = Math.abs(poi.latitude) + Math.abs(poi.longitude) - origin
+    if (distance <= distanceFilter) {
+      poiArray.push(poi.id)
+    }
+  }
+
+  console.log(poiArray)
+  return poiArray
+}
   
 
   return (
+    <section>
+    <h1> Hi </h1>
+    <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
+
+    <p> {findDistance(pois[0], pois, 0.01)} </p>
+
     <div className="App">
+
       <header className="App-header">
         <MapPoints
           pois = {pois}
           location = {location}
         />
       </header>
+    
     </div>
+    </section>
   );
 }
 
