@@ -47,9 +47,8 @@ const location = useGeolocation();
 
   return (
     <section>
-    <h1> Hi </h1>
+    <h1> Finding distance around: </h1>
     <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
-
     <p> {findDistance(pois[0], pois, 2000)} </p>
 
     <div className="App">
