@@ -1,5 +1,6 @@
 import './App.css';
 import MapPoints from './components/MapPoints';
+import useGeolocation from './hooks/useGeolocation';
 
 export const pois = [
   { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426 },
@@ -29,19 +30,15 @@ export const pois = [
 
 function App() {
 
-  const componentDidMount = async () => {
-    await navigator.geolocation.getCurrentPosition(function(position) {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
-    });
-  }
-  componentDidMount();
+const location = useGeolocation();
+  
 
   return (
     <div className="App">
       <header className="App-header">
         <MapPoints
           pois = {pois}
+          location = {location}
         />
       </header>
     </div>
