@@ -5,7 +5,7 @@ import { findDistance } from './helpers/map_helpers';
 
 export const pois = [
   { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426 },
-  // { id: 2, title: "Toronto Zoo", longitude: -79.1745, latitude: 43.8249 },
+  { id: 2, title: "Toronto Zoo", longitude: -79.1745, latitude: 43.8249 },
   { id: 3, title: "Ripley's Aquarium of Canada", longitude: -79.3870, latitude: 43.6441 },
   { id: 4, title: "Royal Ontario Museum", longitude: -79.3944, latitude: 43.6678 },
   { id: 5, title: "Art Gallery of Ontario", longitude: -79.3941, latitude: 43.6541 },
@@ -50,7 +50,7 @@ const location = useGeolocation();
     <h1> Hi </h1>
     <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
 
-    <p> {findDistance(pois[0], pois)} </p>
+    <p> {findDistance(pois[0], pois, 2000)} </p>
 
     <div className="App">
 
