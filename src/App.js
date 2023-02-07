@@ -32,8 +32,9 @@ export const pois = [
 ];
 
 function App() {
-  const [search, setSearch] = useState("")
-
+  const [search, setSearch] = useState("50000")
+  
+  console.log("Main load")
   const location = useGeolocation();
 
   return (
@@ -42,13 +43,14 @@ function App() {
     <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
       Search (m): 
       <input 
-        onChange={(e => setSearch(e.target.value))} 
+        onChange={(e => setSearch(e.target.value))}
+        value={search} 
         placeholder='Search Distance' 
         />   
 
     <div className="App">
 
-      <header className="App-header">
+      <header className="App-header" >
         <MapPoints
           pois = {filterDistance(pois[0], pois, search)}
           location = {location}

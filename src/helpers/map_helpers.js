@@ -16,6 +16,6 @@ export function filterDistance (point, pois, distanceFilter=2000) {
       poiArray.push(poi)
     }
   }
-  console.log(poiArray)
+  console.log("Arrays within distance of point:", poiArray)
   return poiArray
 }

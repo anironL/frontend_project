@@ -2,6 +2,9 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getMapBounds } from '../helpers/map_helpers'
 
   export default function MapPoints(props) {
+    // console.log("location prop:", props.location.coordinates)
+    // console.log("location prop loaded: ", props.location.loaded)
+    // console.log("location prop no error: ", !(props.location.error))
 
    return (
    <MapContainer bounds={getMapBounds(props.pois)} scrollWheelZoom={true}>
@@ -10,7 +13,7 @@ import { getMapBounds } from '../helpers/map_helpers'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-    {props.location.loaded && !props.location.error && (
+    {props.location.loaded && !(props.location.error) && (
       <Marker position = {[
           props.location.coordinates.latitude,
           props.location.coordinates.longitude
