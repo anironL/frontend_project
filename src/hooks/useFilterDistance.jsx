@@ -1,15 +1,17 @@
-import { useState } from 'react'
+// not needed
 
-const useFilterDistance = function(){
-  const [distFilter, setDistFilter] = useState("50000")
+// import { useState } from 'react'
 
-  // originally an onChange function in a field
-  // e => setDistFilter(e.target.value)
-  const updateDistFilter = function (input) {
-    setDistFilter(input);
-  }
+// const useFilterDistance = function(){
+//   const [distFilter, setDistFilter] = useState("50000")
 
-  return { distFilter, updateDistFilter }
-};
+//   // originally an onChange function in a field
+//   // e => setDistFilter(e.target.value)
+//   const updateDistFilter = function (input) {
+//     setDistFilter(input);
+//   }
 
-export default useFilterDistance
+//   return { distFilter, updateDistFilter }
+// };
+
+// export default useFilterDistance

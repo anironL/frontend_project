@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react"
+import Routing from './Routing'
+import { useState, useEffect, useContext } from "react"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getMapBounds, filterDistance } from '../helpers/map_helpers'
-import Routing from './Routing'
 import useClickLocation from '../hooks/useSaveClickLocation';
+import { SearchbarContext } from "../providers/SearchbarProvider";
+
 
 export default function MapPoints(props) {
+  const { distFilter } = useContext(SearchbarContext)
   // console.log("props", props)
   const { NewPoint, pois } = useClickLocation(props.pois);
   // const [distFilter, setDistFilter] = useState("50000")
-
-  let poisDistFiltered = filterDistance(pois[0], pois, props.distFilter)
+  
+  // console.log("distfilter mappoints", distFilter)
+  let poisDistFiltered = filterDistance(pois[0], pois,distFilter.distance)
   // geolocation point (working!)
-  // let poisDistFiltered = filterDistance(props.location.coordinates, pois, props.distFilter)
+  // let poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter)
 
   return (
     // <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
