@@ -19,17 +19,19 @@ const SearchbarProvider = function(props){
   }
 
   const updateKeys = function (input) {
-   if (distFilter[input] === false) {
-     setDistFilter({
-       ...distFilter,
-       input: true
-     })
-   } else {
-    setDistFilter({
-      ...distFilter,
-      input: false
-    })
-   }
+    if (distFilter[input] === false) {
+      setDistFilter({
+        ...distFilter,
+        input: true
+      })
+    } else {
+      setDistFilter({
+        ...distFilter,
+        input: false
+      })
+    }
+    console.log(distFilter)
+    console.log(input, " switched to ", distFilter.input)
   }
 
   const value = { distFilter, updateKeys, updateDistFilter };

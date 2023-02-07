@@ -4,7 +4,7 @@ import { SearchbarContext } from '../providers/SearchbarProvider';
 
 export default function Searchbar(props) {
   // const [distFilter, setDistFilter] = useState("50000")
-  const { distFilter, updateDistFilter } = useContext(SearchbarContext);
+  const { distFilter, updateKeys, updateDistFilter } = useContext(SearchbarContext);
   
   return (
     <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
@@ -22,6 +22,21 @@ export default function Searchbar(props) {
         value={distFilter.distance} 
         placeholder='Search Distance' 
       />   
+
+      <button
+        onClick={() => updateKeys("key1")}>
+          key1
+      </button>
+
+      <button
+        onClick={() => updateKeys("key2")}>
+          key2
+      </button>
+
+      <button
+        onClick={() => updateKeys("key3")}>
+          key3
+      </button>
 
     </section>
   )
