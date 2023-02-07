@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getMapBounds } from '../helpers/map_helpers'
+import Routing from './Routing'
 
   export default function MapPoints(props) {
 
@@ -32,5 +33,6 @@ import { getMapBounds } from '../helpers/map_helpers'
           </Popup>
         </Marker>
       ))}
+       <Routing location={ props.location } />
   </MapContainer>)
   }
