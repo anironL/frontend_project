@@ -1,7 +1,6 @@
 import './App.css';
 import MapPoints from './components/MapPoints';
 import useGeolocation from './hooks/useGeolocation';
-import { filterDistance } from './helpers/map_helpers';
 import { useState } from 'react'
 import useClickLocation from './hooks/useSaveClickLocation';
 
@@ -31,34 +30,35 @@ const pois = [
   { id: 23, title: "The Toronto Music Garden", longitude: -79.3838, latitude: 43.6361 }
 ];
 
-function App() {
-  const [search, setSearch] = useState("50000")
-  
+function App() { 
   console.log("Main load")
   const location = useGeolocation();
+  const [distFilter, setDistFilter] = useState("50000")
 
   return (
-    <section>
+
+  <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
     <h1> Finding distance around: </h1>
     <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
-      Search (m): 
-      <input 
-        onChange={(e => setSearch(e.target.value))}
-        value={search} 
-        placeholder='Search Distance' 
-        />   
-
-    <div className="App">
-
+    
+    Search (m): 
+    
+    <input 
+    onChange={(e => setDistFilter(e.target.value))}
+    value={distFilter} 
+    placeholder='Search Distance' 
+    />   
+    <div className="App">     
       <header className="App-header" >
         <MapPoints
-          pois = {filterDistance(pois[0], pois, search)}
+          pois = {pois}
           location = {location}
+          distFilter = {distFilter}
         />
       </header>
     
     </div>
-    </section>
+  </section>
   );
 }
 

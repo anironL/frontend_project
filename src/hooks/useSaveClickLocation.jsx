@@ -18,7 +18,7 @@ export default function useClickLocation(props) {
     function NewPoint() {
       const map = useMapEvents({
         click: (e) => {
-          console.log(pois)
+          // console.log(pois)
           const { lat, lng } = e.latlng;
           let marker;
           if (markers.length > 0) {
@@ -55,5 +55,3 @@ export default function useClickLocation(props) {
     pois
   }
 }
-  
-
