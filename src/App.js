@@ -2,10 +2,10 @@ import './App.css';
 import MapPoints from './components/MapPoints';
 import useGeolocation from './hooks/useGeolocation';
 import { filterDistance } from './helpers/map_helpers';
-
 import { useState } from 'react'
+import useClickLocation from './hooks/useSaveClickLocation';
 
-export const pois = [
+const pois = [
   { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426 },
   { id: 2, title: "Toronto Zoo", longitude: -79.1745, latitude: 43.8249 },
   { id: 3, title: "Ripley's Aquarium of Canada", longitude: -79.3870, latitude: 43.6441 },
