@@ -5,7 +5,7 @@ import { useState } from 'react'
 import useClickLocation from './hooks/useSaveClickLocation';
 
 const pois = [
-  { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426 },
+  { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426, keys: [1, 2, 5, 7] },
   { id: 2, title: "Toronto Zoo", longitude: -79.1745, latitude: 43.8249 },
   { id: 3, title: "Ripley's Aquarium of Canada", longitude: -79.3870, latitude: 43.6441 },
   { id: 4, title: "Royal Ontario Museum", longitude: -79.3944, latitude: 43.6678 },
@@ -34,6 +34,12 @@ function App() {
   console.log("Main load")
   const location = useGeolocation();
   const [distFilter, setDistFilter] = useState("50000")
+
+  const [searchFilter, setSearchFilter] = useState({
+    wheelchairAccess: false,
+    needsKey: false,
+    key3: false
+  })
 
   return (
 

@@ -10,6 +10,8 @@ export default function MapPoints(props) {
   // const [distFilter, setDistFilter] = useState("50000")
 
   let poisDistFiltered = filterDistance(pois[0], pois, props.distFilter)
+  // geolocation point (working!)
+  // let poisDistFiltered = filterDistance(props.location.coordinates, pois, props.distFilter)
 
   return (
     // <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
