@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function useGeolocation() {
   const [location, setLocation] =  useState({
     loaded: false,
     coordinates: { latitude:"", longitude:""} 
   });
-  const onSuccess = (location) => {
+  const response = (newLocation) => {
+    console.log("useGeolocation response", newLocation)
     setLocation({
         loaded: true,
         coordinates: {
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            latitude: newLocation.coords.latitude,
+            longitude: newLocation.coords.longitude,
         },
     });
     }
-  const onError = (error) => {
+  const error = (error) => {
     setLocation({
         loaded: true,
         error,
@@ -24,22 +25,20 @@ export default function useGeolocation() {
 
   useEffect(() => {
     if( !("geolocation" in navigator)){
-        onError({
+        error({
           code: 0,
           message: "Geolocation not supported or denied."      
         })
-    //   setLocation(prev => ({
-    //     ...prev,
-    //     loaded: true,
-    //     error: {
-    //       code: 0,
-    //       message: "Geolocation not supported or denied."
-    //     }
-    //   }))
     }  
 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError)
-  }, [location])
+    let id = navigator.geolocation.watchPosition(response, error)
+    // navigator.geolocation.getCurrentPosition(response, error)
+    return () => { 
+      navigator.geolocation.clearWatch(id)
+      // console.log("cleanup watchPosition")
+    }
+  }, [location.coordinates.latitude, location.coordinates.longitude])
+  //[location])
 
   return location
 }
