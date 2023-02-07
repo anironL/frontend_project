@@ -1,8 +1,10 @@
 import './App.css';
 import MapPoints from './components/MapPoints';
+import Searchbar from './components/Searchbar';
 import useGeolocation from './hooks/useGeolocation';
 import { useState } from 'react'
 import useClickLocation from './hooks/useSaveClickLocation';
+import useFilterDistance from './hooks/useFilterDistance';
 
 const pois = [
   { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426, keys: [1, 2, 5, 7] },
@@ -33,7 +35,9 @@ const pois = [
 function App() { 
   console.log("Main load")
   const location = useGeolocation();
-  const [distFilter, setDistFilter] = useState("50000")
+  // const [distFilter, setDistFilter] = useState("50000")
+
+  const { distFilter, updateDistFilter } = useFilterDistance
 
   const [searchFilter, setSearchFilter] = useState({
     wheelchairAccess: false,
@@ -44,7 +48,10 @@ function App() {
   return (
 
   <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
-    <h1> Finding distance around: </h1>
+    <Searchbar 
+      pois = {pois}   
+    />
+    {/* <h1> Finding distance around: </h1>
     <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
     
     Search (m): 
@@ -53,7 +60,7 @@ function App() {
     onChange={(e => setDistFilter(e.target.value))}
     value={distFilter} 
     placeholder='Search Distance' 
-    />   
+    />    */}
     <div className="App">     
       <header className="App-header" >
         <MapPoints
