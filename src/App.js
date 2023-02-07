@@ -40,7 +40,7 @@ function App() {
     <section>
     <h1> Finding distance around: </h1>
     <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
-      Search (km): 
+      Search (m): 
       <input 
         onChange={(e => setSearch(e.target.value))} 
         placeholder='Search Distance' 
