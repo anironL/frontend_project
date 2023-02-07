@@ -36,6 +36,6 @@ import Routing from './Routing'
           </Popup>
         </Marker>
       ))}
-       <Routing location={ props.location } />
+       {props.location.loaded && <Routing location={props.location} />}
   </MapContainer>)
   }

@@ -12,17 +12,12 @@ export default function Routing(props) {
   //console.log(typeof props.location.coordinates.latitude)
   const map = useMap();
 
-  const endDestination = [];
-  // map.on('click', (e) => {
-  //   endDestination.push(e.latlng.lat, e.latlng.lng)
-  // });
-
   useEffect(() => {
     if (!map) return;
 
     const routingControl = L.Routing.control({
       // waypoints: [start destination, end destination]
-      waypoints: [L.latLng(props.location.coordinates.latitude, props.location.coordinates.longitude), L.latLng(43.648905479972626, -79.39128660489602)],
+      waypoints: [L.latLng(props.location.coordinates.latitude, props.location.coordinates.longitude), L.latLng(43.64792449713005, -79.38176974860588)],
       routeWhileDragging: true
     }).addTo(map);
 
