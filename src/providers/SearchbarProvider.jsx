@@ -18,20 +18,21 @@ const SearchbarProvider = function(props){
       distance: input});
   }
 
+  // toggle key true false
   const updateKeys = function (input) {
     if (distFilter[input] === false) {
       setDistFilter({
         ...distFilter,
-        input: true
+        [input]: true
       })
     } else {
       setDistFilter({
         ...distFilter,
-        input: false
+        [input]: false
       })
     }
     console.log(distFilter)
-    console.log(input, " switched to ", distFilter.input)
+    console.log(input, " switched to ", distFilter[input])
   }
 
   const value = { distFilter, updateKeys, updateDistFilter };

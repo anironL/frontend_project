@@ -1,7 +1,7 @@
 import Routing from './Routing'
 import { useState, useEffect, useContext } from "react"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { getMapBounds, filterDistance } from '../helpers/map_helpers'
+import { getMapBounds, filterDistance, filterKey } from '../helpers/map_helpers'
 import useClickLocation from '../hooks/useSaveClickLocation';
 import { SearchbarContext } from "../providers/SearchbarProvider";
 
@@ -16,6 +16,9 @@ export default function MapPoints(props) {
   let poisDistFiltered = filterDistance(pois[0], pois,distFilter.distance)
   // geolocation point (working!)
   // let poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter)
+
+  let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
+  console.log(poisKeyFiltered)
 
   return (
     // <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
@@ -44,7 +47,7 @@ export default function MapPoints(props) {
       } 
       />
       )}  
-      {poisDistFiltered.map(point => (
+      {poisKeyFiltered.map(point => (
       // {pois.map(point => (
         <Marker
           key={point.id}
