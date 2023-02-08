@@ -15,7 +15,7 @@ export default function useClickLocation(props) {
   // console.log("pois " + JSON.stringify(props));
     const [pois, setPois] = useState(props);
     const [markers, setMarkers] = useState([]);
-    const { geolocation, startLocation, updateStartLocation } = useContext(SearchbarContext);
+    const { geolocation, startLocation, updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
     
 // add name field? default start or route to?
 
@@ -39,6 +39,9 @@ export default function useClickLocation(props) {
               </button>
               <button id="set-start-pos"}>
               Set Start Location
+              </button>
+              <button id="set-end-pos"}>
+              Set End Location
               </button>`, {
               closeButton: true,
               closeOnClick: true,
@@ -56,6 +59,11 @@ export default function useClickLocation(props) {
             updateStartLocation({latitude: lat, longitude: lng});
             marker.closePopup();
             console.log(startLocation)
+          });
+
+          document.getElementById("set-end-pos").addEventListener("click", function(e) {
+            updateEndLocation({y: lat, x: lng});
+            marker.closePopup();
           });
           
           marker.on("popupclose", function(e) {

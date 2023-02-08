@@ -10,17 +10,19 @@ L.Marker.prototype.options.icon = L.icon({
 });
 
 export default function Routing(props) {
-  const [endDestination, setEndDestination] = useState(null);
-  const { geolocation, startLocation } = useContext(SearchbarContext);
+  // const [endDestination, setEndDestination] = useState(null);
+  const { geolocation, startLocation, endDestination, setEndDestination } = useContext(SearchbarContext);
   const map = useMap();
   
   map.on('geosearch/showlocation', (result) => setEndDestination(result.location));
 
-  let startCoords = startLocation
+  let startCoords = startLocation;
   
   if (geolocation === true){
     startCoords = props.location.coordinates
-  }
+  };
+  
+  let endCoords = endDestination;
   
   // console.log("geolocation:", geolocation)
   // console.log("start Coords:", startCoords)
@@ -30,7 +32,7 @@ export default function Routing(props) {
     console.log("routing lat", endDestination)
     const routingControl = L.Routing.control({
       // waypoints: [start destination, end destination]
-      waypoints: [L.latLng(startCoords.latitude, startCoords.longitude), L.latLng(endDestination?.y, endDestination?.x)],
+      waypoints: [L.latLng(startCoords.latitude, startCoords.longitude), L.latLng(endCoords?.y, endCoords?.x)],
       routeWhileDragging: true
     }).addTo(map);
 

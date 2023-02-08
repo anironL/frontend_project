@@ -53,8 +53,15 @@ const SearchbarProvider = function(props){
     console.log(input)
     setStartLocation(input);
   }
+
+  // State to manage end position set by user
+  const [endDestination, setEndDestination] = useState(null);
+
+  const updateEndLocation = function (input) {
+    setEndDestination(input);
+  }
   
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation };
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation };
 
   return (
     <SearchbarContext.Provider value = {value}>
