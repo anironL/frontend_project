@@ -7,18 +7,20 @@ import { SearchbarContext } from "../providers/SearchbarProvider";
 import LeafletGeoSearch from './LeafletGeoSearch'
 
 export default function MapPoints(props) {
-  const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation } = useContext(SearchbarContext);
+  const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
   
-  let poisDistFiltered = filterDistance(pois[0], pois,distFilter.distance)
+
+  console.log(props.location)
+
+
+  let poisDistFiltered = filterDistance(startLocation, pois,distFilter.distance)
 
   if (geolocation === true) {
     poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter.distance)
-    console.log("Geolocation on:", props.location.coordinates)
   } else {
     // set to user defined point
-    poisDistFiltered = filterDistance(pois[0], pois, distFilter.distance)
-    console.log("No geolocation", pois[0])
+    poisDistFiltered = filterDistance(startLocation, pois, distFilter.distance)
   }
 
   let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
@@ -48,6 +50,10 @@ export default function MapPoints(props) {
         >
           <Popup>
             {point.name}
+            <button
+              onClick={() => updateStartLocation({latitude: point.latitude, longitude: point.longitude})}>
+                Set Start Location
+            </button>
           </Popup>
         </Marker>
       ))}

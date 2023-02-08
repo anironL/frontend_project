@@ -42,8 +42,19 @@ const SearchbarProvider = function(props){
     }
     console.log("geolocation:", geolocation)
   }
-
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation };
+  
+  // State to manage location position set by user
+  const [startLocation, setStartLocation] = useState({
+    latitude: 43.6426,
+    longitude: -79.3872
+  })
+  
+  const updateStartLocation = function (input) {
+    console.log(input)
+    setStartLocation(input);
+  }
+  
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation };
 
   return (
     <SearchbarContext.Provider value = {value}>

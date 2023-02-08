@@ -15,6 +15,8 @@ export default function useClickLocation(props) {
     const [pois, setPois] = useState(props);
     const [markers, setMarkers] = useState([]);
     
+// add name field? default start or route to?
+
     function NewPoint() {
       const map = useMapEvents({
         click: (e) => {
