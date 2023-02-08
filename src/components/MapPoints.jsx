@@ -7,16 +7,21 @@ import { SearchbarContext } from "../providers/SearchbarProvider";
 import LeafletGeoSearch from './LeafletGeoSearch'
 
 export default function MapPoints(props) {
-  const { distFilter } = useContext(SearchbarContext)
-  console.log("props", props)
+  const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
-
+  
   let poisDistFiltered = filterDistance(pois[0], pois,distFilter.distance)
-  // geolocation point (working!)
-  // let poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter)
+
+  if (geolocation === true) {
+    poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter.distance)
+    console.log("Geolocation on:", props.location.coordinates)
+  } else {
+    // set to user defined point
+    poisDistFiltered = filterDistance(pois[0], pois, distFilter.distance)
+    console.log("No geolocation", pois[0])
+  }
 
   let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
-  console.log(poisKeyFiltered)
 
   return (
     <MapContainer bounds={getMapBounds(props.pois)} scrollWheelZoom={true}>
@@ -34,7 +39,6 @@ export default function MapPoints(props) {
       />
       )}  
       {poisKeyFiltered.map(point => (
-      // {pois.map(point => (
         <Marker
           key={point.id}
           position={[
@@ -52,6 +56,5 @@ export default function MapPoints(props) {
       <LeafletGeoSearch />
         
     </MapContainer>
-    // </section>
     )
 }

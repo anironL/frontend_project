@@ -9,16 +9,14 @@ const SearchbarProvider = function(props){
     key2: false,
     key3: false
   })
-
-  // originally an onChange function in a field
-  // e => setDistFilter(e.target.value)
+  // Set state.distance to equal input (used in an input field)
   const updateDistFilter = function (input) {
     setDistFilter({
       ...distFilter, 
       distance: input});
   }
-
-  // toggle key true false
+  
+  // Toggle search key between true/false
   const updateKeys = function (input) {
     if (distFilter[input] === false) {
       setDistFilter({
@@ -31,11 +29,21 @@ const SearchbarProvider = function(props){
         [input]: false
       })
     }
-    console.log(distFilter)
-    console.log(input, " switched to ", distFilter[input])
   }
 
-  const value = { distFilter, updateKeys, updateDistFilter };
+  // State to manage if current position is geolocation or set by user
+  const [geolocation, setGeolocation] = useState(false)
+
+  const toggleGeolocation = function () {
+    if (geolocation === false) {
+      setGeolocation(true)
+    } else {
+      setGeolocation(false)
+    }
+    console.log("geolocation:", geolocation)
+  }
+
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation };
 
   return (
     <SearchbarContext.Provider value = {value}>

@@ -3,7 +3,7 @@ import { SearchbarContext } from '../providers/SearchbarProvider';
 
 
 export default function Searchbar() {
-  const { distFilter, updateKeys, updateDistFilter } = useContext(SearchbarContext);
+  const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation } = useContext(SearchbarContext);
   
   return (
     <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
@@ -14,7 +14,6 @@ export default function Searchbar() {
       <input 
         onChange={(e => {
           updateDistFilter(e.target.value)
-          // console.log(distFilter)
         })}
         value={distFilter.distance} 
         placeholder='Search Distance' 
@@ -35,6 +34,12 @@ export default function Searchbar() {
           key3
       </button>
 
+      \
+      <button
+        onClick={() => toggleGeolocation()}>
+          geolocation
+      </button>
+      /
     </section>
   )
 }

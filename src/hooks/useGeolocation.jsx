@@ -34,7 +34,6 @@ export default function useGeolocation() {
 
     return () => { 
       navigator.geolocation.clearWatch(id)
-      // console.log("cleanup watchPosition")
     }
   }, [location.coordinates.latitude, location.coordinates.longitude])
 

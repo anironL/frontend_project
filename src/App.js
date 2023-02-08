@@ -1,10 +1,15 @@
+// Components
 import './App.css';
-import { useState, useEffect } from 'react'
 import MapPoints from './components/MapPoints';
 import Searchbar from './components/Searchbar';
+
+// Hooks & libraries
+import axios from 'axios';
+import { useState, useEffect, useContext } from 'react'
 import useGeolocation from './hooks/useGeolocation';
 import SearchbarProvider from './providers/SearchbarProvider';
-import axios from 'axios';
+import { SearchbarContext } from './providers/SearchbarProvider';
+import useAPI from './hooks/useAPI';
 
 // let pois = [
 //   { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426, keys: ["key1", "key2", "key3"] },
@@ -34,33 +39,31 @@ import axios from 'axios';
 
 function App() { 
   console.log("Main load")
-  
-  const [ state, setState ] = useState({
-    washrooms: []
-  })
-  
   const location = useGeolocation();
+  
+  const { state } = useAPI();
 
-  useEffect(() => {
-    axios.get('/washrooms')
-      .then(res => {
-        // console.log(res.data)
-        setState ((prev) => ({
-          ...prev,
-          washrooms: res.data
-        }))
-      });
-  }, []);
+  // const [ state, setState ] = useState({
+  //   washrooms: []
+  // })
+  // useEffect(() => {
+  //   axios.get('/washrooms')
+  //     .then(res => {
+  //       setState ((prev) => ({
+  //         ...prev,
+  //         washrooms: res.data
+  //       }))
+  //     });
+  // }, []);
 
   return (
 
   <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
     <SearchbarProvider>
-      <Searchbar />
+      <Searchbar />  
     <div className="App">     
       <header className="App-header" >
         {state.washrooms.length > 0 && <MapPoints
-          // pois = {pois}
           pois={state.washrooms}
           location = {location}
         />}
