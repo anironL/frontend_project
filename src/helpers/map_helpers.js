@@ -1,7 +1,11 @@
 export function getMapBounds(mapPoints){
   let boundsArray = [];
+  
+  console.log("getMapBounds", mapPoints)
   mapPoints.forEach(point =>
     boundsArray.push([point.latitude, point.longitude]));
+  
+  // console.log("returned boundsArray =", boundsArray)
   return boundsArray;
 }
 
@@ -16,7 +20,7 @@ export function filterDistance (point, pois, distanceFilter=2000) {
       poiArray.push(poi)
     }
   }
-  console.log("Arrays within distance of point:", poiArray)
+  // console.log("Arrays within distance of point:", poiArray)
   return poiArray
 }
 
@@ -36,7 +40,7 @@ export function  filterKey(keys, pois) {
     
       for (let array of poiArray) {
         overlappingPOIs = overlappingPOIs.filter(e => array.includes(e));
-        console.log("Overlap", overlappingPOIs)
+        // console.log("Overlap", overlappingPOIs)
       }
       
     return overlappingPOIs

@@ -8,11 +8,9 @@ import LeafletGeoSearch from './LeafletGeoSearch'
 
 export default function MapPoints(props) {
   const { distFilter } = useContext(SearchbarContext)
-  // console.log("props", props)
+  console.log("props", props)
   const { NewPoint, pois } = useClickLocation(props.pois);
-  // const [distFilter, setDistFilter] = useState("50000")
-  
-  // console.log("distfilter mappoints", distFilter)
+
   let poisDistFiltered = filterDistance(pois[0], pois,distFilter.distance)
   // geolocation point (working!)
   // let poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter)
@@ -21,19 +19,7 @@ export default function MapPoints(props) {
   console.log(poisKeyFiltered)
 
   return (
-    // <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
-    //   <h1> Finding distance around: </h1>
-    //   <p> {pois[0].id} {pois[0].title}: {pois[0].latitude}, {pois[0].longitude} </p>
-      
-    //   Search (m): 
-      
-    //   <input 
-    //   onChange={(e => setDistFilter(e.target.value))}
-    //   value={distFilter} 
-    //   placeholder='Search Distance' 
-    //   />   
-
-    <MapContainer bounds={getMapBounds(pois)} scrollWheelZoom={true}>
+    <MapContainer bounds={getMapBounds(props.pois)} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

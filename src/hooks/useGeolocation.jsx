@@ -20,7 +20,6 @@ export default function useGeolocation() {
         loaded: true,
         error,
     })
-    console.log(error)
   }
 
   useEffect(() => {
@@ -32,13 +31,24 @@ export default function useGeolocation() {
     }  
 
     let id = navigator.geolocation.watchPosition(response, error)
-    // navigator.geolocation.getCurrentPosition(response, error)
+
     return () => { 
       navigator.geolocation.clearWatch(id)
       // console.log("cleanup watchPosition")
     }
   }, [location.coordinates.latitude, location.coordinates.longitude])
-  //[location])
+
+// Geolocation snap to map area
+// const snapToLocation = () => {
+//   if (location.loaded && !location.error) {
+//     mapRef.current.leafletElement.flyTo(
+//       [ location.coordinates.latitude, location.coordinates.longitude ], 
+//       15, //ZOOM_LEVEL
+//       {animate: true})
+//   } else {
+//     alert(location.error.message)
+//   }
+// } 
 
   return location
 }
