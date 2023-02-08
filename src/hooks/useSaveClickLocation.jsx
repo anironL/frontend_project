@@ -1,6 +1,7 @@
 import { useMapEvents } from 'react-leaflet'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import L from "leaflet";
+import { SearchbarContext } from '../providers/SearchbarProvider';
 
 const icon = L.icon({
   iconSize: [25, 41],
@@ -14,6 +15,7 @@ export default function useClickLocation(props) {
   // console.log("pois " + JSON.stringify(props));
     const [pois, setPois] = useState(props);
     const [markers, setMarkers] = useState([]);
+    const { geolocation, startLocation, updateStartLocation } = useContext(SearchbarContext);
     
 // add name field? default start or route to?
 
@@ -29,7 +31,15 @@ export default function useClickLocation(props) {
           marker = L.marker([lat, lng], { icon });
           marker
             .addTo(map)
-            .bindPopup(`Added point at ${lat},${lng}.<br/><br/><button id="confirm-save">Save</button>`, {
+            .bindPopup(`
+              Added point at ${lat},${lng}.
+              <br/><br/>
+              <button id="confirm-save">
+                Save
+              </button>
+              <button id="set-start-pos"}>
+              Set Start Location
+              </button>`, {
               closeButton: true,
               closeOnClick: true,
               autoClose: true,
@@ -40,6 +50,12 @@ export default function useClickLocation(props) {
           document.getElementById("confirm-save").addEventListener("click", function(e) {
             setPois(prevPois => [...prevPois, {id: Date.now(), title: "Fake Title", latitude: lat, longitude: lng}]);
             marker.closePopup();
+          });
+
+          document.getElementById("set-start-pos").addEventListener("click", function(e) {
+            updateStartLocation({latitude: lat, longitude: lng});
+            marker.closePopup();
+            console.log(startLocation)
           });
           
           marker.on("popupclose", function(e) {

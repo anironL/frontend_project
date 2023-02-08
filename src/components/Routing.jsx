@@ -11,7 +11,7 @@ L.Marker.prototype.options.icon = L.icon({
 
 export default function Routing(props) {
   const [endDestination, setEndDestination] = useState(null);
-  const { geolocation, startLocation, updateStartLocation } = useContext(SearchbarContext);
+  const { geolocation, startLocation } = useContext(SearchbarContext);
   const map = useMap();
   
   map.on('geosearch/showlocation', (result) => setEndDestination(result.location));
