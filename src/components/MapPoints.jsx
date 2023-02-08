@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getMapBounds, filterDistance } from '../helpers/map_helpers'
 import Routing from './Routing'
+import LeafletGeoSearch from "./LeafletGeoSearch"
 import useClickLocation from '../hooks/useSaveClickLocation';
 
 export default function MapPoints(props) {
@@ -56,6 +57,7 @@ export default function MapPoints(props) {
       ))}
         {props.location.loaded && <Routing location={props.location} />}
       <NewPoint />
+      <LeafletGeoSearch />
         
     </MapContainer>
     // </section>

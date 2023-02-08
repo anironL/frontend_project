@@ -53,3 +53,7 @@
 .leaflet-routing-alt h3 {
   display: none;
 }
+
+.results {
+  color: black;
+}
