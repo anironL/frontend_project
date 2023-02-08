@@ -1,18 +1,24 @@
-import { useState, useEffect } from "react"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { getMapBounds, filterDistance } from '../helpers/map_helpers'
 import Routing from './Routing'
-import LeafletGeoSearch from "./LeafletGeoSearch"
+import { useContext } from "react"
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { getMapBounds, filterDistance, filterKey } from '../helpers/map_helpers'
 import useClickLocation from '../hooks/useSaveClickLocation';
+import { SearchbarContext } from "../providers/SearchbarProvider";
+import LeafletGeoSearch from './LeafletGeoSearch'
 
 export default function MapPoints(props) {
+  const { distFilter } = useContext(SearchbarContext)
   // console.log("props", props)
   const { NewPoint, pois } = useClickLocation(props.pois);
   // const [distFilter, setDistFilter] = useState("50000")
-
-  let poisDistFiltered = filterDistance(pois[0], pois, props.distFilter)
+  
+  // console.log("distfilter mappoints", distFilter)
+  let poisDistFiltered = filterDistance(pois[0], pois,distFilter.distance)
   // geolocation point (working!)
-  // let poisDistFiltered = filterDistance(props.location.coordinates, pois, props.distFilter)
+  // let poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter)
+
+  let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
+  console.log(poisKeyFiltered)
 
   return (
     // <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
@@ -41,7 +47,7 @@ export default function MapPoints(props) {
       } 
       />
       )}  
-      {poisDistFiltered.map(point => (
+      {poisKeyFiltered.map(point => (
       // {pois.map(point => (
         <Marker
           key={point.id}

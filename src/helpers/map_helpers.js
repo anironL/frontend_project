@@ -19,3 +19,41 @@ export function filterDistance (point, pois, distanceFilter=2000) {
   console.log("Arrays within distance of point:", poiArray)
   return poiArray
 }
+
+// Filter an array for each key
+export function  filterKey(keys, pois) {
+    let poiArray = []
+    let overlappingPOIs = []
+  
+    for (let key in keys) {
+      if (keys[key] === true) {
+        poiArray.push(filterKeyPOIs(key, pois))
+      }
+    }
+  
+    if (poiArray[0]) {
+      overlappingPOIs = poiArray[0];
+    
+      for (let array of poiArray) {
+        overlappingPOIs = overlappingPOIs.filter(e => array.includes(e));
+        console.log("Overlap", overlappingPOIs)
+      }
+      
+    return overlappingPOIs
+    }
+    
+  return pois
+}
+  
+// Filter pois and return if key exists in array. Used by filterKey and not exported. 
+  function filterKeyPOIs (key, pois) {
+    let poiArray = []
+    
+    for (let poi of pois) {
+      if (poi.keys.includes(key)){
+        poiArray.push(poi)
+      }
+    }
+  
+    return poiArray
+  }
