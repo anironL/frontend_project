@@ -47,7 +47,7 @@ export default function MapPoints(props) {
           ]}
         >
           <Popup>
-            {point.title}
+            {point.name}
           </Popup>
         </Marker>
       ))}

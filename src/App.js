@@ -39,39 +39,23 @@ import useAPI from './hooks/useAPI';
 
 function App() { 
   console.log("Main load")
-  const location = useGeolocation();
-  
   const { state } = useAPI();
-
-  // const [ state, setState ] = useState({
-  //   washrooms: []
-  // })
-  // useEffect(() => {
-  //   axios.get('/washrooms')
-  //     .then(res => {
-  //       setState ((prev) => ({
-  //         ...prev,
-  //         washrooms: res.data
-  //       }))
-  //     });
-  // }, []);
+  const location = useGeolocation();
 
   return (
-
-  <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
-    <SearchbarProvider>
-      <Searchbar />  
-    <div className="App">     
-      <header className="App-header" >
-        {state.washrooms.length > 0 && <MapPoints
-          pois={state.washrooms}
-          location = {location}
-        />}
-      </header>
-    
-    </div>
-  </SearchbarProvider>
-  </section>
+    <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
+      <SearchbarProvider>
+        <Searchbar />  
+      <div className="App">     
+        <header className="App-header" >
+          {state.washrooms.length > 0 && <MapPoints
+            pois={state.washrooms}
+            location = {location}
+          />}
+        </header>
+      </div>
+    </SearchbarProvider>
+    </section>
   );
 }
 
