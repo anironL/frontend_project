@@ -43,7 +43,6 @@ function App() {
   const location = useGeolocation();
 
   return (
-    <section style={ {color: "white", backgroundColor: "Green", width: "100%"} }>
       <SearchbarProvider>
         <Searchbar />  
       <div className="App">     
@@ -56,7 +55,7 @@ function App() {
         </header>
       </div>
     </SearchbarProvider>
-    </section>
+ 
   );
 }
 
