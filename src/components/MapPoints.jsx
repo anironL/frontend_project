@@ -7,7 +7,7 @@ import { SearchbarContext } from "../providers/SearchbarProvider";
 import LeafletGeoSearch from './LeafletGeoSearch'
 
 export default function MapPoints(props) {
-  const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation } = useContext(SearchbarContext);
+  const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation, endDestination, updateEndLocation } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
   
 
@@ -53,6 +53,10 @@ export default function MapPoints(props) {
             <button
               onClick={() => updateStartLocation({latitude: point.latitude, longitude: point.longitude})}>
                 Set Start Location
+            </button>
+            <button
+              onClick={() => updateEndLocation({y: point.latitude, x: point.longitude})}>
+                Set Destination
             </button>
           </Popup>
         </Marker>

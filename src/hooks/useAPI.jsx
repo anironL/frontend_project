@@ -16,5 +16,14 @@ export default function useAPI() {
       });
   }, []);
 
-  return { state };
+  function savePoint(point) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${process.env.REACT_APP_PROXY_URL}/washrooms`, {...point})
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+    });
+  };
+
+
+  return { state, savePoint };
 }

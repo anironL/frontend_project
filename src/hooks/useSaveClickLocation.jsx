@@ -2,6 +2,7 @@ import { useMapEvents } from 'react-leaflet'
 import { useState, useContext } from 'react';
 import L from "leaflet";
 import { SearchbarContext } from '../providers/SearchbarProvider';
+import useAPI from './useAPI';
 
 const icon = L.icon({
   iconSize: [25, 41],
@@ -11,14 +12,14 @@ const icon = L.icon({
   shadowUrl: "https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png"
 });
 
-export default function useClickLocation(props) {
+export default function useSaveClickLocation(props) {
   // console.log("pois " + JSON.stringify(props));
     const [pois, setPois] = useState(props);
     const [markers, setMarkers] = useState([]);
     const { geolocation, startLocation, updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
+    const { savePoint } = useAPI();
     
 // add name field? default start or route to?
-
     function NewPoint() {
       const map = useMapEvents({
         click: (e) => {
@@ -34,9 +35,22 @@ export default function useClickLocation(props) {
             .bindPopup(`
               Added point at ${lat},${lng}.
               <br/><br/>
-              <button id="confirm-save">
-                Save
-              </button>
+              <form>
+              <label for="title">Title:</label>
+              <input type="text" id="title" name="name" value="Fake Title"><br><br>
+            
+              <label for="key1">Key 1:</label>
+              <input type="checkbox" id="key1" name="key1" value="false"><br><br>
+            
+              <label for="key2">Key 2:</label>
+              <input type="checkbox" id="key2" name="key2" value="false"><br><br>
+            
+              <label for="key3">Key 3:</label>
+              <input type="checkbox" id="key3" name="key3" value="false"><br><br>
+            
+              <input type="submit" id="confirm-save" value="Submit">
+            </form>
+          
               <button id="set-start-pos"}>
               Set Start Location
               </button>
@@ -49,9 +63,37 @@ export default function useClickLocation(props) {
               autoPan: true
             })
             .openPopup();
-    
+          // onClick.()
+
+
+
+
           document.getElementById("confirm-save").addEventListener("click", function(e) {
-            setPois(prevPois => [...prevPois, {id: Date.now(), title: "Fake Title", latitude: lat, longitude: lng}]);
+            e.preventDefault();
+              // Get the values from the form
+            const title = document.getElementById("title").value;
+            const key1 = document.getElementById("key1").checked;
+            const key2 = document.getElementById("key2").checked;
+            const key3 = document.getElementById("key3").checked;
+            const newWashroom = {
+              name: title,
+              latitude: lat,
+              longitude: lng,
+              key1: key1,
+              key2: key2,
+              key3: key3
+            };
+        
+            savePoint(newWashroom)
+              .then((res) => {
+                //Sets the appointments state to trigger rerender
+                setPois(prevPois => [...prevPois, newWashroom])
+            })
+              .catch((error) => {
+                console.log(error.response.status);
+                console.log(error.response.headers);
+                console.log(error.response.data);
+            });
             marker.closePopup();
           });
 

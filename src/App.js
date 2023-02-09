@@ -39,7 +39,7 @@ import useAPI from './hooks/useAPI';
 
 function App() { 
   console.log("Main load")
-  const { state } = useAPI();
+  const { state, savePoint } = useAPI();
   const location = useGeolocation();
 
   return (
@@ -51,6 +51,7 @@ function App() {
           {state.washrooms.length > 0 && <MapPoints
             pois={state.washrooms}
             location = {location}
+            savePoint = {savePoint}
           />}
         </header>
       </div>
