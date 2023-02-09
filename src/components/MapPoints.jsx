@@ -7,17 +7,16 @@ import { SearchbarContext } from "../providers/SearchbarProvider";
 import LeafletGeoSearch from './LeafletGeoSearch'
 
 export default function MapPoints(props) {
-  const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation, endDestination, updateEndLocation } = useContext(SearchbarContext);
+  const { distFilter,  geolocation, startLocation, updateStartLocation, updateEndLocation, livelocation } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
   
-
-  console.log(props.location)
-
+  // console.log(props.location)
 
   let poisDistFiltered = filterDistance(startLocation, pois,distFilter.distance)
+  // console.log(geolocation)
 
   if (geolocation === true) {
-    poisDistFiltered = filterDistance(props.location.coordinates, pois, distFilter.distance)
+    poisDistFiltered = filterDistance(livelocation.coordinates, pois, distFilter.distance)
   } else {
     // set to user defined point
     poisDistFiltered = filterDistance(startLocation, pois, distFilter.distance)
@@ -32,10 +31,10 @@ export default function MapPoints(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-      {props.location.loaded && !(props.location.error) && (
+      {livelocation.loaded && !(livelocation.error) && (
         <Marker position = {[
-          props.location.coordinates.latitude,
-          props.location.coordinates.longitude
+          livelocation.coordinates.latitude,
+          livelocation.coordinates.longitude
         ]
       } 
       />
@@ -61,7 +60,7 @@ export default function MapPoints(props) {
           </Popup>
         </Marker>
       ))}
-        {props.location.loaded && <Routing location={props.location} />}
+        {livelocation.loaded && <Routing location={livelocation} />}
       <NewPoint />
       <LeafletGeoSearch />
         

@@ -29,7 +29,7 @@ export default function Routing(props) {
   
   useEffect(() => {
     if (!map) return;
-    console.log("routing lat", endDestination)
+    // console.log("routing lat", endDestination)
     const routingControl = L.Routing.control({
       // waypoints: [start destination, end destination]
       waypoints: [L.latLng(startCoords.latitude, startCoords.longitude), L.latLng(endCoords?.y, endCoords?.x)],

@@ -50,7 +50,6 @@ export default function Searchbar() {
       step={1000}      
       min={0}
       max={50000}
-      valueLabelDisplay="auto"
       onChange={(e => {
         updateDistFilter(e.target.value)
       })}

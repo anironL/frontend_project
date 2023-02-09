@@ -2,15 +2,46 @@
 import './App.css';
 import MapPoints from './components/MapPoints';
 import Searchbar from './components/Searchbar';
+import GeolocationConditional from './components/GeolocationConditional';
 
 // Hooks & libraries
-import axios from 'axios';
 import { useState, useEffect, useContext } from 'react'
-import useGeolocation from './hooks/useGeolocation';
-import SearchbarProvider from './providers/SearchbarProvider';
 import { SearchbarContext } from './providers/SearchbarProvider';
 import useAPI from './hooks/useAPI';
 
+function App() { 
+  console.log("Main load")
+  const { state, savePoint } = useAPI();
+  // const location = useGeolocation();
+
+  const { geolocation } = useContext(SearchbarContext);
+
+  // useEffect(() => {
+  //   if (geolocation === true) {
+  //     useGeolocation()
+  //   }
+  // }, [geolocation]) 
+
+  return (
+    <section>
+        <Searchbar />
+        {geolocation === true && <GeolocationConditional />}
+      <div className="App">     
+        <header className="App-header" >
+          {state.washrooms.length > 0 && <MapPoints
+            pois={state.washrooms}
+            // location = {location}
+            savePoint = {savePoint}
+          />}
+        </header>
+      </div>
+    </section>
+  );
+}
+
+export default App;
+
+// old hardcoded data (delete later)
 // let pois = [
 //   { id: 1, title: "CN Tower", longitude: -79.3872, latitude: 43.6426, keys: ["key1", "key2", "key3"] },
 //   { id: 2, title: "Toronto Zoo", longitude: -79.1745, latitude: 43.8249, keys: ["key1"] },
@@ -36,28 +67,3 @@ import useAPI from './hooks/useAPI';
 //   { id: 22, title: "The Beach", longitude: -79.2997, latitude: 43.6760, keys: ["key1", "key2"] },
 //   { id: 23, title: "The Toronto Music Garden", longitude: -79.3838, latitude: 43.6361, keys: ["key2"] }
 // ];
-
-function App() { 
-  console.log("Main load")
-  const { state, savePoint } = useAPI();
-  const location = useGeolocation();
-
-  return (
-      <SearchbarProvider>
-        <Searchbar />  
-      <div className="App">     
-        <header className="App-header" >
-          {state.washrooms.length > 0 && <MapPoints
-            pois={state.washrooms}
-            location = {location}
-            savePoint = {savePoint}
-          />}
-        </header>
-      </div>
-    </SearchbarProvider>
- 
-  );
-}
-
-export default App;
-

@@ -33,6 +33,13 @@ const SearchbarProvider = function(props){
 
   // State to manage if current position is geolocation or set by user
   const [geolocation, setGeolocation] = useState(false)
+  const [livelocation, setLivelocation] = useState( {
+    loaded: true,
+    coordinates: {
+      latitude: 43.6426,
+      longitude: -79.3872
+    }
+  })
 
   const toggleGeolocation = function () {
     if (geolocation === false) {
@@ -40,9 +47,13 @@ const SearchbarProvider = function(props){
     } else {
       setGeolocation(false)
     }
-    console.log("geolocation:", geolocation)
   }
   
+  const updateLivelocation = function (input) {
+    // console.log(input)
+    setLivelocation(input);
+  }
+
   // State to manage location position set by user
   const [startLocation, setStartLocation] = useState({
     latitude: 43.6426,
@@ -61,7 +72,7 @@ const SearchbarProvider = function(props){
     setEndDestination(input);
   }
   
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation };
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation };
 
   return (
     <SearchbarContext.Provider value = {value}>
