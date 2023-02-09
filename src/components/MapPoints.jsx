@@ -1,6 +1,6 @@
 import Routing from './Routing'
 import { useContext } from "react"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import { getMapBounds, filterDistance, filterKey } from '../helpers/map_helpers'
 import useClickLocation from '../hooks/useSaveClickLocation';
 import { SearchbarContext } from "../providers/SearchbarProvider";
@@ -9,7 +9,6 @@ import LeafletGeoSearch from './LeafletGeoSearch'
 export default function MapPoints(props) {
   const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, startLocation, updateStartLocation, endDestination, updateEndLocation } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
-  
 
   console.log(props.location)
 
