@@ -1,10 +1,16 @@
 import React, { useContext } from 'react'
 import { SearchbarContext } from '../providers/SearchbarProvider';
+import { styled } from '@mui/material/styles';
 
 //MUI Imports
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
+function valuetext(value) {
+  return `${value}°C`;
+}
 
 export default function Searchbar() {
   const { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation } = useContext(SearchbarContext);
@@ -30,6 +36,20 @@ export default function Searchbar() {
         value={distFilter.distance} 
         placeholder='Search Distance' 
       />   
+      <Slider
+      aria-label="Temperature"
+      defaultValue={1000}
+      getAriaValueText={valuetext}
+      valueLabelDisplay="auto"
+      step={500}
+      marks
+      min={0}
+      max={5000}
+      onChange={(e => {
+        updateDistFilter(e.target.value)
+      })}
+    />
+
     <ToggleButtonGroup
       value={formats}
       onChange={handleFormat}
