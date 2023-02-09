@@ -75,14 +75,16 @@ export default function useSaveClickLocation(props) {
             const key1 = document.getElementById("key1").checked;
             const key2 = document.getElementById("key2").checked;
             const key3 = document.getElementById("key3").checked;
+            const keyArr = [[key1, "key1"], [key2, "key2"], [key3, "key3"]];
+            const newArr = [];
+            keyArr.forEach(key => key[0]? newArr.push(key[1]): "");
             const newWashroom = {
               name: title,
               latitude: lat,
               longitude: lng,
-              key1: key1,
-              key2: key2,
-              key3: key3
+              keys: newArr
             };
+            console.log(newWashroom);
         
             savePoint(newWashroom)
               .then((res) => {
