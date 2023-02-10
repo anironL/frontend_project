@@ -1,7 +1,8 @@
 // Components
 import './App.css';
 // import MapPoints from './components/MapPoints';
-import Searchbar from './components/headerComponents/Searchbar';
+// import Searchbar from './components/headerComponents/Searchbar';
+import Header from './components/headerComponents/Header';
 import MapOnly from './components/mapComponents/MapOnly';
 import GeolocationConditional from './components/GeolocationConditional';
 
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <section>
-        <Searchbar />
+        <Header />
         {geolocation === true && <GeolocationConditional />}
       <div className="App">     
         <header className="App-header" >

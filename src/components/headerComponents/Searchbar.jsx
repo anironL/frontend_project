@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { SearchbarContext } from '../../providers/SearchbarProvider';
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
 
 //MUI Imports
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Slider from '@mui/material/Slider';
 import { Grid } from '@mui/material';
-import { textAlign } from '@mui/system';
+// import { textAlign } from '@mui/system';
 
 function valuetext(value) {
   return `${value}°C`;
