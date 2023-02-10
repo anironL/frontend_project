@@ -5,15 +5,7 @@ import "leaflet-geosearch/dist/geosearch.css";
 
 export default function LeafletGeoSearch() {
   const map = useMap();
-  
-  /*
-  function searchEventHandler(result) {
-    console.log("Event handler: ", result.location);
-  }
-
-  map.on('geosearch/showlocation', searchEventHandler);
-  */
-  
+   
   useEffect(() => {
     const provider = new OpenStreetMapProvider();
 

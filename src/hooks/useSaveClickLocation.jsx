@@ -1,8 +1,8 @@
-import { useMapEvents } from 'react-leaflet'
-import { useState, useContext } from 'react';
 import L from "leaflet";
-import { SearchbarContext } from '../providers/SearchbarProvider';
+import { useState, useContext } from 'react';
+import { useMapEvents } from 'react-leaflet'
 import useAPI from './useAPI';
+import { SearchbarContext } from '../providers/SearchbarProvider';
 
 const icon = L.icon({
   iconSize: [25, 41],
@@ -13,13 +13,11 @@ const icon = L.icon({
 });
 
 export default function useSaveClickLocation(props) {
-  // console.log("pois " + JSON.stringify(props));
     const [pois, setPois] = useState(props);
     const [markers, setMarkers] = useState([]);
-    const { geolocation, startLocation, updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
+    const { startLocation, updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
     const { savePoint } = useAPI();
     
-// add name field? default start or route to?
     function NewPoint() {
       const map = useMapEvents({
         click: (e) => {
@@ -63,14 +61,10 @@ export default function useSaveClickLocation(props) {
               autoPan: true
             })
             .openPopup();
-          // onClick.()
-
-
-
 
           document.getElementById("confirm-save").addEventListener("click", function(e) {
             e.preventDefault();
-              // Get the values from the form
+            // Get the values from the form
             const title = document.getElementById("title").value;
             const key1 = document.getElementById("key1").checked;
             const key2 = document.getElementById("key2").checked;

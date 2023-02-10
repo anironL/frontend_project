@@ -1,7 +1,8 @@
 // Components
 import './App.css';
-import MapPoints from './components/MapPoints';
-import Searchbar from './components/Searchbar';
+// import MapPoints from './components/MapPoints';
+import Searchbar from './components/headerComponents/Searchbar';
+import MapOnly from './components/mapComponents/MapOnly';
 import GeolocationConditional from './components/GeolocationConditional';
 
 // Hooks & libraries
@@ -12,15 +13,8 @@ import useAPI from './hooks/useAPI';
 function App() { 
   console.log("Main load")
   const { state, savePoint } = useAPI();
-  // const location = useGeolocation();
 
   const { geolocation } = useContext(SearchbarContext);
-
-  // useEffect(() => {
-  //   if (geolocation === true) {
-  //     useGeolocation()
-  //   }
-  // }, [geolocation]) 
 
   return (
     <section>
@@ -28,7 +22,7 @@ function App() {
         {geolocation === true && <GeolocationConditional />}
       <div className="App">     
         <header className="App-header" >
-          {state.washrooms.length > 0 && <MapPoints
+          {state.washrooms.length > 0 && <MapOnly
             pois={state.washrooms}
             // location = {location}
             savePoint = {savePoint}

@@ -1,12 +1,15 @@
+// Components
+import MapMarkers from './MapMarkers';
+import LeafletGeoSearch from './LeafletGeoSearch'
 import Routing from './Routing'
+// Hooks, Helpers, & Providers
 import { useContext } from "react"
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
-import { getMapBounds, filterDistance, filterKey } from '../helpers/map_helpers'
-import useClickLocation from '../hooks/useSaveClickLocation';
-import { SearchbarContext } from "../providers/SearchbarProvider";
-import LeafletGeoSearch from './LeafletGeoSearch'
+import useClickLocation from '../../hooks/useSaveClickLocation';
+import { getMapBounds, filterDistance, filterKey } from '../../helpers/map_helpers.js'
+import { SearchbarContext } from "../../providers/SearchbarProvider";
 
-export default function MapPoints(props) {
+export default function MapOnly(props) {
   const { distFilter,  geolocation, startLocation, updateStartLocation, updateEndLocation, livelocation } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
   
@@ -15,7 +18,6 @@ export default function MapPoints(props) {
   if (geolocation === true) {
     poisDistFiltered = filterDistance(livelocation.coordinates, pois, distFilter.distance)
   } else {
-    // set to user defined point
     poisDistFiltered = filterDistance(startLocation, pois, distFilter.distance)
   }
 
@@ -27,7 +29,7 @@ export default function MapPoints(props) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-
+      
       {livelocation.loaded && !(livelocation.error) && (
         <Marker position = {[
           livelocation.coordinates.latitude,
@@ -37,25 +39,10 @@ export default function MapPoints(props) {
       />
       )}  
       {poisKeyFiltered.map(point => (
-        <Marker
-          key={point.id}
-          position={[
-            point.latitude,
-            point.longitude
-          ]}
-        >
-          <Popup>
-            {point.name}
-            <button
-              onClick={() => updateStartLocation({latitude: point.latitude, longitude: point.longitude})}>
-                Set Start Location
-            </button>
-            <button
-              onClick={() => updateEndLocation({y: point.latitude, x: point.longitude})}>
-                Set Destination
-            </button>
-          </Popup>
-        </Marker>
+        <MapMarkers 
+          key = {point.id}
+          point = {point}
+        />
       ))}
         {livelocation.loaded && <Routing location={livelocation} />}
       <NewPoint />

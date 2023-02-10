@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { SearchbarContext } from '../providers/SearchbarProvider';
+import { SearchbarContext } from '../../providers/SearchbarProvider';
 import { styled } from '@mui/material/styles';
 
 //MUI Imports
@@ -22,10 +22,8 @@ export default function Searchbar() {
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
   };
-
   
   return (
-
     <section style={ {color: "white", backgroundColor: "green", width: "100%", padding: "20px"} }>
       
       <h1> Searchbar component</h1>
@@ -34,13 +32,6 @@ export default function Searchbar() {
       spacing={3}
       justifyContent="space-evenly"
     >  
-      {/* <input 
-        onChange={(e => {
-          updateDistFilter(e.target.value)
-        })}
-        value={distFilter.distance} 
-        placeholder='Search Distance' 
-      />    */}
     <Grid item xs={11}>
     Search (m):<Slider
       aria-label="Temperature"
