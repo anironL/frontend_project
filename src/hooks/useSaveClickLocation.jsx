@@ -29,7 +29,6 @@ export default function useSaveClickLocation(props) {
             map.removeLayer(markers[0]);
           }
 
-
           let currentZoom = map.getZoom();
           console.log("saveclick zoom", currentZoom)
 

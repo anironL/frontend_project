@@ -30,11 +30,43 @@ export default function Routing(props) {
   useEffect(() => {
     if (!map) return;
     // console.log("routing lat", endDestination)
-    const routingControl = L.Routing.control({
-      // waypoints: [start destination, end destination]
-      waypoints: [L.latLng(startCoords.latitude, startCoords.longitude), L.latLng(endCoords?.y, endCoords?.x)],
-      routeWhileDragging: true
-    }).addTo(map);
+    // const routingControl = L.Routing.control({
+    //   // waypoints: [start destination, end destination]
+    //   waypoints: [L.latLng(startCoords.latitude, startCoords.longitude), L.latLng(endCoords?.y, endCoords?.x)],
+    //   routeWhileDragging: true,
+
+    //   collapsible: true
+    // }).addTo(map);
+
+    // console.log(routingControl.getPlan())
+
+    const routingControl = 
+      L.Routing.control({
+        waypoints: [
+            L.latLng(startCoords.latitude, startCoords.longitude),
+            L.latLng(endCoords?.y, endCoords?.x)
+        ],
+        routeWhileDragging: true,
+        // geocoder: L.Control.Geocoder.nominatim()
+      })
+      .on('routesfound', function(e) {
+          // var routes = e.routes;
+          // alert('Found ' + routes.length + ' route(s).');
+          console.log(e)
+      })
+      .addTo(map);
+
+
+
+
+
+
+
+
+
+
+
+
 
     return () => map.removeControl(routingControl);
   }, [startCoords, endDestination]);
