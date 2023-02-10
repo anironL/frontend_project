@@ -1,6 +1,6 @@
 import Routing from './Routing'
 import { useContext } from "react"
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getMapBounds, filterDistance, filterKey } from '../helpers/map_helpers'
 import useClickLocation from '../hooks/useSaveClickLocation';
 import { SearchbarContext } from "../providers/SearchbarProvider";

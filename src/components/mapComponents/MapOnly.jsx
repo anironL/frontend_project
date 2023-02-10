@@ -4,13 +4,13 @@ import LeafletGeoSearch from './LeafletGeoSearch'
 import Routing from './Routing'
 // Hooks, Helpers, & Providers
 import { useContext } from "react"
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import useClickLocation from '../../hooks/useSaveClickLocation';
 import { getMapBounds, filterDistance, filterKey } from '../../helpers/map_helpers.js'
 import { SearchbarContext } from "../../providers/SearchbarProvider";
 
 export default function MapOnly(props) {
-  const { distFilter,  geolocation, startLocation, updateStartLocation, updateEndLocation, livelocation } = useContext(SearchbarContext);
+  const { distFilter,  geolocation, startLocation, livelocation } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
   
   let poisDistFiltered = filterDistance(startLocation, pois,distFilter.distance)

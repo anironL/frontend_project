@@ -1,13 +1,11 @@
 // Components
 import './App.css';
-// import MapPoints from './components/MapPoints';
-// import Searchbar from './components/headerComponents/Searchbar';
 import Header from './components/headerComponents/Header';
 import MapOnly from './components/mapComponents/MapOnly';
 import GeolocationConditional from './components/GeolocationConditional';
 
 // Hooks & libraries
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import { SearchbarContext } from './providers/SearchbarProvider';
 import useAPI from './hooks/useAPI';
 
@@ -25,7 +23,6 @@ function App() {
         <header className="App-header" >
           {state.washrooms.length > 0 && <MapOnly
             pois={state.washrooms}
-            // location = {location}
             savePoint = {savePoint}
           />}
         </header>

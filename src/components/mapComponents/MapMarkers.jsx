@@ -22,7 +22,7 @@ export default function MapMarkers(props) {
             map.flyTo([props.point.latitude, props.point.longitude], 12)
           }
           }
-            
+
             >
             Set Start Location
         </button>
