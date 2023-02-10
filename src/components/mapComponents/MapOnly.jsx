@@ -22,6 +22,7 @@ export default function MapOnly(props) {
   }
 
   let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
+  
 
   return (
     <MapContainer bounds={getMapBounds(props.pois)} scrollWheelZoom={true}>

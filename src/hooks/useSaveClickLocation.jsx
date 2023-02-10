@@ -15,6 +15,7 @@ const icon = L.icon({
 export default function useSaveClickLocation(props) {
     const [pois, setPois] = useState(props);
     const [markers, setMarkers] = useState([]);
+
     const { startLocation, updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
     const { savePoint } = useAPI();
     
@@ -27,6 +28,13 @@ export default function useSaveClickLocation(props) {
           if (markers.length > 0) {
             map.removeLayer(markers[0]);
           }
+
+
+          let currentZoom = map.getZoom();
+          console.log("saveclick zoom", currentZoom)
+
+          map.setView([lat, lng], currentZoom)
+
           marker = L.marker([lat, lng], { icon });
           marker
             .addTo(map)
