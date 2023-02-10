@@ -46,7 +46,7 @@ export default function useSaveClickLocation(props) {
               <label for="key3">Key 3:</label>
               <input type="checkbox" id="key3" name="key3" value="false"><br><br>
             
-              <input type="submit" id="confirm-save" value="Submit">
+              <input type="submit" id="confirm-save" >
             </form>
           
               <button id="set-start-pos"}>
@@ -70,6 +70,9 @@ export default function useSaveClickLocation(props) {
             const key2 = document.getElementById("key2").checked;
             const key3 = document.getElementById("key3").checked;
             const keyArr = [[key1, "key1"], [key2, "key2"], [key3, "key3"]];
+
+            console.log("What are the arrays?", keyArr)
+
             const newArr = [];
             keyArr.forEach(key => key[0]? newArr.push(key[1]): "");
             const newWashroom = {
