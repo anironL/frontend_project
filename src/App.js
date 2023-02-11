@@ -1,6 +1,7 @@
 // Components
 import './App.css';
 import Header from './components/headerComponents/Header';
+// import Header from "./components/Header.jsx";
 import MapOnly from './components/mapComponents/MapOnly';
 import GeolocationConditional from './components/GeolocationConditional';
 
@@ -17,15 +18,15 @@ function App() {
 
   return (
     <section>
-        <Header />
         {geolocation === true && <GeolocationConditional />}
-      <div className="App">     
-        <header className="App-header" >
+      <div className="App">
+        <div className="App-header" >
+        <Header className="page-header" /> 
           {state.washrooms.length > 0 && <MapOnly
             pois={state.washrooms}
             savePoint = {savePoint}
           />}
-        </header>
+        </div>
       </div>
     </section>
   );

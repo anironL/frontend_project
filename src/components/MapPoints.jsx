@@ -22,7 +22,7 @@ export default function MapPoints(props) {
   let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
 
   return (
-    <MapContainer bounds={getMapBounds(props.pois)} scrollWheelZoom={true}>
+    <MapContainer bounds={getMapBounds(props.pois)} scrollWheelZoom={true} className="map-container">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

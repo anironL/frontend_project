@@ -10,24 +10,22 @@ export default function FilterKeys(props) {
 
   return (
     <ToggleButtonGroup
-    value={props.formats}
-    onChange={props.handleFormat}
-    aria-label="text formatting"
+      aria-label="key toggles"
     >
-    <ToggleButton
-      onClick={() => updateKeys("key1")}>
-        key1
-    </ToggleButton>
+      <ToggleButton
+        onClick={() => updateKeys("key1")}>
+          key1
+      </ToggleButton>
 
-    <ToggleButton
-      onClick={() => updateKeys("key2")}>
-        key2
-    </ToggleButton>
+      <ToggleButton
+        onClick={() => updateKeys("key2")}>
+          key2
+      </ToggleButton>
 
-    <ToggleButton
-      onClick={() => updateKeys("key3")}>
-        key3
-    </ToggleButton>
+      <ToggleButton
+        onClick={() => updateKeys("key3")}>
+          key3
+      </ToggleButton>
     </ToggleButtonGroup>
   )
 }
