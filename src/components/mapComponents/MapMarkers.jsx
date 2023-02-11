@@ -9,6 +9,12 @@ export default function MapMarkers(props) {
   let currentZoom = map.getZoom();
   console.log("zoom", currentZoom)
 
+  map.on('popupopen', function(e) {
+    var px = map.project(e.popup._latlng);
+    px.y -= e.popup._container.clientHeight/2;
+    map.panTo(map.unproject(px), {animate: true});
+  });
+
   return (
     <Marker
       key={props.point.id}
@@ -16,6 +22,7 @@ export default function MapMarkers(props) {
         props.point.latitude,
         props.point.longitude
       ]}
+      // onClick={map.setView([props.point.latitude, props.point.longitude])}
     >
       <Popup>
         {props.point.name}

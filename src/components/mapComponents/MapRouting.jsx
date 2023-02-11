@@ -10,7 +10,7 @@ export default function MapRouting(props) {
   const { startLocation, distFilter, routeCoords } = useContext(SearchbarContext);
 
   let routePointsArray = []; 
-
+  
   routeCoords.map(point => {
     // console.log("Point array point", point)
     

@@ -46,7 +46,7 @@ export function  filterKey(keys, pois) {
 // Filter pois and return if key exists in array. Used by filterKey and not exported. 
   function filterKeyPOIs (key, pois) {
     let poiArray = []
-    
+
     for (let poi of pois) {
       if (poi.keys.includes(key)){
         poiArray.push(poi)
