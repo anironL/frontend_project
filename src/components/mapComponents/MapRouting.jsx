@@ -7,18 +7,20 @@ import MapRoutingMarkers from "./MapRoutingMarkers";
 
 export default function MapRouting(props) {
   const map = useMap()
-  const { distFilter, routeCoords } = useContext(SearchbarContext);
+  const { startLocation, distFilter, routeCoords } = useContext(SearchbarContext);
 
   let routePointsArray = []; 
 
   routeCoords.map(point => {
+    // console.log("Point array point", point)
+    
     let routePointsDistFiltered = filterDistance(
       {latitude: point.coords.lat, longitude: point.coords.lng}, 
       props.pois,
       distFilter.distance
     )
     let routePointsKeyFiltered = filterKey( 
-      routePointsDistFiltered, 
+      distFilter, 
       routePointsDistFiltered
     )
 
@@ -27,6 +29,8 @@ export default function MapRouting(props) {
         routePointsArray.push(poi)
       }
     }
+
+    console.log("PoIs on route", routePointsArray)
   })
   
   return (

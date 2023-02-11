@@ -48,15 +48,6 @@ export default function MapOnly(props) {
           point = {point}
         />
       ))}
-
-      {/* {routeCoords.length > 0 && 
-      routeCoords.map(point => (
-        <MapRouting
-          key = {point.key}
-          point = {point.coords}
-        />
-      ))
-      }  */}
       {routeCoords.length > 0 && 
         <MapRouting 
           pois = {props.pois}

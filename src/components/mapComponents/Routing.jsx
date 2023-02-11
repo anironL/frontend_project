@@ -48,8 +48,9 @@ export default function Routing(props) {
         // geocoder: L.Control.Geocoder.nominatim()
       })
       .on('routesfound', function(e) {       
-        const coordInterval = 30
-        let coordsOnRoute = Math.trunc(e.routes[0].coordinates.length/coordInterval)*coordInterval
+        const coordInterval = Math.ceil(e.routes[0].coordinates.length/5);
+       
+        let coordsOnRoute = Math.trunc(e.routes[0].coordinates.length/coordInterval)*coordInterval;
           
         let y = 1;
         let routePoints = [{
