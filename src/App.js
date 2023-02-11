@@ -24,7 +24,7 @@ function App() {
 
   return (
     <section>
-        <Searchbar />
+        {/* <Searchbar /> */}
         {geolocation === true && <GeolocationConditional />}
       <div className="App">     
         <header className="App-header" >

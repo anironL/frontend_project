@@ -48,7 +48,7 @@ export default function useSaveClickLocation(props) {
               <label for="key3">Key 3:</label>
               <input type="checkbox" id="key3" name="key3" value="false"><br><br>
             
-              <input type="submit" id="confirm-save" value="Submit">
+              <input type="submit" id="confirm-save">
             </form>
           
               <button id="set-start-pos"}>
