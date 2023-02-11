@@ -71,8 +71,16 @@ const SearchbarProvider = function(props){
   const updateEndLocation = function (input) {
     setEndDestination(input);
   }
+
+  // State to manage coordinates in route
+  const [routeCoords, setRouteCoords] = useState([]);
   
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation };
+  const updateRouteCoords = function (coords) {
+    setRouteCoords(coords);
+    console.log("New coordinates", coords)
+  }
+  
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords };
 
   return (
     <SearchbarContext.Provider value = {value}>

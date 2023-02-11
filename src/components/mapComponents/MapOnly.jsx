@@ -2,6 +2,9 @@
 import MapMarkers from './MapMarkers';
 import LeafletGeoSearch from './LeafletGeoSearch'
 import Routing from './Routing'
+import MapRoutingMarkers from './MapRoutingMarkers';
+
+
 // Hooks, Helpers, & Providers
 import { useContext } from "react"
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
@@ -10,7 +13,7 @@ import { getMapBounds, filterDistance, filterKey } from '../../helpers/map_helpe
 import { SearchbarContext } from "../../providers/SearchbarProvider";
 
 export default function MapOnly(props) {
-  const { distFilter,  geolocation, startLocation, livelocation } = useContext(SearchbarContext);
+  const { distFilter,  geolocation, startLocation, livelocation, routeCoords } = useContext(SearchbarContext);
   const { NewPoint, pois } = useClickLocation(props.pois);
   
   let poisDistFiltered = filterDistance(startLocation, pois,distFilter.distance)
@@ -45,6 +48,16 @@ export default function MapOnly(props) {
           point = {point}
         />
       ))}
+
+      {routeCoords.length > 0 && 
+      routeCoords.map(point => (
+        <MapRoutingMarkers
+          key = {point.key}
+          point = {point.coords}
+        />
+      ))
+      } 
+
         {livelocation.loaded && <Routing location={livelocation} />}
       <NewPoint />
       <LeafletGeoSearch />

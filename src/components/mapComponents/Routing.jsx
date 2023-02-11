@@ -10,8 +10,7 @@ L.Marker.prototype.options.icon = L.icon({
 });
 
 export default function Routing(props) {
-  // const [endDestination, setEndDestination] = useState(null);
-  const { geolocation, startLocation, endDestination, setEndDestination } = useContext(SearchbarContext);
+  const { geolocation, startLocation, endDestination, setEndDestination, routeCoords, updateRouteCoords } = useContext(SearchbarContext);
   const map = useMap();
   
   map.on('geosearch/showlocation', (result) => setEndDestination(result.location));
@@ -23,10 +22,7 @@ export default function Routing(props) {
   };
   
   let endCoords = endDestination;
-  
-  // console.log("geolocation:", geolocation)
-  // console.log("start Coords:", startCoords)
-  
+ 
   useEffect(() => {
     if (!map) return;
     // console.log("routing lat", endDestination)
@@ -47,19 +43,38 @@ export default function Routing(props) {
             L.latLng(endCoords?.y, endCoords?.x)
         ],
         routeWhileDragging: true,
+        collapsible: true,
+        showAlternative: false,
         // geocoder: L.Control.Geocoder.nominatim()
       })
-      .on('routesfound', function(e) {
-          // var routes = e.routes;
-          // alert('Found ' + routes.length + ' route(s).');
-          console.log(e)
+      .on('routesfound', function(e) {       
+        const coordInterval = 30
+        let coordsOnRoute = Math.trunc(e.routes[0].coordinates.length/coordInterval)*coordInterval
+          
+        let y = 1;
+        let routePoints = [{
+          key: 0,
+          coords: L.latLng(startCoords.latitude, startCoords.longitude)
+        }];
+
+        for (let x = coordInterval; x < coordsOnRoute; x+=coordInterval) {
+          // console.log(x)
+          routePoints.push({
+            key: y,
+            coords: e.routes[0].coordinates[x]
+          })
+          y++
+        }
+
+        routePoints.push({
+          key: y,
+          coords: L.latLng(endCoords?.y, endCoords?.x)
+        })
+  
+        updateRouteCoords(routePoints)
+      
       })
       .addTo(map);
-
-
-
-
-
 
 
 
