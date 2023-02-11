@@ -2,22 +2,22 @@ import { getListItemSecondaryActionClassesUtilityClass } from "@mui/material";
 import { useContext } from "react"
 import { Marker, Popup, useMap } from 'react-leaflet'
 import { SearchbarContext } from "../../providers/SearchbarProvider";
-
+import { filterKey, filterDistance } from "../../helpers/map_helpers.js";
 
 export default function MapRoutingMarkers(props) {
   const map = useMap()
-  const { routeCoords } = useContext(SearchbarContext);
-
-  console.log("props passed", props.point)
-  // console.log("Mapped coordinates", routeCoords.map((e) => e))
-
+  const { distFilter, routeCoords } = useContext(SearchbarContext);
+  
   return (
+
     <Marker
       key={props.key}
       position={[
-        props.point.lat,
-        props.point.lng
+        props.point.latitude,
+        props.point.longitude
       ]}
       ></Marker>
+    // <></>
   )
+
 }

@@ -77,7 +77,7 @@ const SearchbarProvider = function(props){
   
   const updateRouteCoords = function (coords) {
     setRouteCoords(coords);
-    console.log("New coordinates", coords)
+    // console.log("New coordinates", coords)
   }
   
   const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords };

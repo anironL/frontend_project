@@ -2,7 +2,7 @@
 import MapMarkers from './MapMarkers';
 import LeafletGeoSearch from './LeafletGeoSearch'
 import Routing from './Routing'
-import MapRoutingMarkers from './MapRoutingMarkers';
+import MapRouting from './MapRouting';
 
 
 // Hooks, Helpers, & Providers
@@ -49,14 +49,18 @@ export default function MapOnly(props) {
         />
       ))}
 
-      {routeCoords.length > 0 && 
+      {/* {routeCoords.length > 0 && 
       routeCoords.map(point => (
-        <MapRoutingMarkers
+        <MapRouting
           key = {point.key}
           point = {point.coords}
         />
       ))
-      } 
+      }  */}
+      {routeCoords.length > 0 && 
+        <MapRouting 
+          pois = {props.pois}
+        />}
 
         {livelocation.loaded && <Routing location={livelocation} />}
       <NewPoint />
