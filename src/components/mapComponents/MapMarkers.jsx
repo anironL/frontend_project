@@ -1,8 +1,8 @@
-import { useContext } from "react"
+import React, { useContext, memo } from "react"
 import { Marker, Popup, useMap } from 'react-leaflet'
 import { SearchbarContext } from "../../providers/SearchbarProvider";
 
-export default function MapMarkers(props) {
+export function MapMarkers(props) {
   const map = useMap()
   const { updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
 
@@ -44,3 +44,5 @@ export default function MapMarkers(props) {
     </Marker>
   )
 }
+
+export const MemoizedMapMarkers = React.memo(MapMarkers)

@@ -1,7 +1,7 @@
 // Components
-import MapMarkers from './MapMarkers';
-import LeafletGeoSearch from './LeafletGeoSearch'
-import Routing from './Routing'
+import { MemoizedMapMarkers } from './MapMarkers';
+import { MemoizedLeafletGeoSearch } from './LeafletGeoSearch'
+import { MemoizedRouting } from './Routing'
 import { MemoizedMapRouting } from './MapRouting';
 
 
@@ -43,7 +43,7 @@ export default function MapOnly(props) {
       />
       )}  
       {poisKeyFiltered.map(point => (
-        <MapMarkers 
+        <MemoizedMapMarkers 
           key = {point.id}
           point = {point}
         />
@@ -53,9 +53,9 @@ export default function MapOnly(props) {
           pois = {pois}
         />}
 
-        {livelocation.loaded && <Routing location={livelocation} />}
+        {livelocation.loaded && <MemoizedRouting location={livelocation} />}
       <NewPoint />
-      <LeafletGeoSearch />
+      <MemoizedLeafletGeoSearch />
         
     </MapContainer>
     )

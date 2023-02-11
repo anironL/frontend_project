@@ -5,7 +5,7 @@ import { SearchbarContext } from "../../providers/SearchbarProvider";
 import { filterKey, filterDistance } from "../../helpers/map_helpers.js";
 import MapRoutingMarkers from "./MapRoutingMarkers";
 
-export const MapRouting = (props) => {
+export function MapRouting (props) {
   const map = useMap()
   const { startLocation, distFilter, routeCoords } = useContext(SearchbarContext);
 

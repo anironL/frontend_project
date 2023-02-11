@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import L from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine";
@@ -9,7 +9,7 @@ L.Marker.prototype.options.icon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png"
 });
 
-export default function Routing(props) {
+export function Routing(props) {
   const { geolocation, startLocation, endDestination, setEndDestination, routeCoords, updateRouteCoords } = useContext(SearchbarContext);
   const map = useMap();
   
@@ -77,15 +77,10 @@ export default function Routing(props) {
       })
       .addTo(map);
 
-
-
-
-
-
-
-
     return () => map.removeControl(routingControl);
   }, [startCoords, endDestination]);
 
   return null;
 }
+
+export const MemoizedRouting = React.memo(Routing)

@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { useMap } from "react-leaflet";
 import "leaflet-geosearch/dist/geosearch.css";
 
-export default function LeafletGeoSearch() {
+export function LeafletGeoSearch() {
   const map = useMap();
    
   useEffect(() => {
@@ -25,3 +25,5 @@ export default function LeafletGeoSearch() {
 
   return null;
 }
+
+export const MemoizedLeafletGeoSearch = React.memo(LeafletGeoSearch)
