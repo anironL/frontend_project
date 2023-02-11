@@ -30,7 +30,7 @@ export default function useSaveClickLocation(props) {
           }
 
           let currentZoom = map.getZoom();
-          console.log("saveclick zoom", currentZoom)
+          // console.log("saveclick zoom", currentZoom)
 
           map.setView([lat, lng], currentZoom)
 

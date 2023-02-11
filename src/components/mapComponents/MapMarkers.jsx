@@ -7,7 +7,7 @@ export default function MapMarkers(props) {
   const { updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
 
   let currentZoom = map.getZoom();
-  console.log("zoom", currentZoom)
+  // console.log("zoom", currentZoom)
 
   map.on('popupopen', function(e) {
     var px = map.project(e.popup._latlng);
