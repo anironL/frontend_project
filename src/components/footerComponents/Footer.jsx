@@ -4,6 +4,7 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+import RouteIcon from '@mui/icons-material/Route';
 import { SearchbarContext } from '../../providers/SearchbarProvider.jsx';
 
 export default function Footer() {
@@ -41,9 +42,15 @@ export default function Footer() {
     onClick={handleNearYou} 
     icon={<LocationOnIcon 
     sx={{ fontSize: 50 }} />} />
-  <BottomNavigationAction label="Near A Location" 
+  <BottomNavigationAction 
+    label="Near A Location" 
     onClick={handleSearchBar}
     icon={<TravelExploreIcon 
+    sx={{ fontSize: 50 }} />} />
+  <BottomNavigationAction 
+    label="Along A Route" 
+    onClick={handleSearchBar}
+    icon={<RouteIcon 
     sx={{ fontSize: 50 }} />} />
   </BottomNavigation>
 
