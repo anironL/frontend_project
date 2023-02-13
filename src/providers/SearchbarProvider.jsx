@@ -62,8 +62,8 @@ const SearchbarProvider = function(props){
   })
   
   const updateStartLocation = function (input) {
-    console.log(input)
     setStartLocation(input);
+    console.log(startLocation)
   }
 
   // State to manage end position set by user
@@ -71,6 +71,7 @@ const SearchbarProvider = function(props){
 
   const updateEndLocation = function (input) {
     setEndDestination(input);
+    console.log("update endLocation", endDestination);
   }
 
   // State to manage coordinates in route
