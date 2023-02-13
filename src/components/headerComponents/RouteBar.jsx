@@ -38,7 +38,9 @@ export default function RouteBar({ setSearchedLocation }) {
         <Typography style={{ color: "black", padding: "10px", borderRadius: "5px", width: "80%"}}>Start:</Typography><AutocompleteSearch 
           update="start"
           />
-        <Typography style={{ color: "black", padding: "10px", borderRadius: "5px", width: "80%"}}>End:</Typography><AutocompleteSearch 
+        <Typography 
+          style={{ color: "black", padding: "10px", borderRadius: "5px", width: "80%"}}>End:</Typography>
+        <AutocompleteSearch 
           update="end"
           />
       </AppBar>

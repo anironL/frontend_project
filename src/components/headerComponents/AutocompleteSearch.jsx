@@ -18,8 +18,8 @@ const AutocompleteSearch = (props) => {
             longitude: lng
           }) :
           updateEndLocation(
-            {latitude: lat, 
-              longitude: lng
+            {y: lat, 
+              x: lng
             });
         
       }}
