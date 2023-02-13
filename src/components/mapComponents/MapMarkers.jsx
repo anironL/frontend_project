@@ -1,10 +1,17 @@
-import React, { useContext, memo } from "react"
+import React, { useContext, memo, useEffect } from "react"
 import { Marker, Popup, useMap } from 'react-leaflet'
 import { SearchbarContext } from "../../providers/SearchbarProvider";
 
 export function MapMarkers(props) {
   const map = useMap()
   const { updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
+  
+  // useEffect(() => {
+  //   console.log("Start Loc Changed: " + JSON.stringify(startLocation));
+  //   map.panTo(startLocation)
+  // }, [startLocation]);
+
+
 
   let currentZoom = map.getZoom();
   // console.log("zoom", currentZoom)

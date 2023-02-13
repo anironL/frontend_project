@@ -16,6 +16,7 @@ import {
   ToggleButtonGroup,
   Slider
 } from '@mui/material';        
+import {  } from '@emotion/react';
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
@@ -65,7 +66,7 @@ export default function Header() {
   return `${value}°C`;
 }
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 0 }}>
       <FormGroup>
         <FormControlLabel
           control={
@@ -148,10 +149,13 @@ export default function Header() {
             </>
           )}
         </div>
-        {filterOpen && (
+        
+        </Toolbar>
+      </AppBar>
+      {filterOpen && (
           <AppBar sx={{ 
             padding: '1rem', 
-            position: 'absolute',
+            position: 'static',
             display: 'inline-flex', 
             top: '64px', 
             width: '100%', 
@@ -189,8 +193,6 @@ export default function Header() {
             </ToggleButtonGroup>
           </AppBar>
         )}
-        </Toolbar>
-      </AppBar>
     </Box>
   );
 }

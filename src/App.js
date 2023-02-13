@@ -1,13 +1,18 @@
 // Components
 import './App.css';
 import Header from './components/headerComponents/Header';
+// import Header from "./components/Header.jsx";
 import MapOnly from './components/mapComponents/MapOnly';
 import GeolocationConditional from './components/GeolocationConditional';
 
 // Hooks & libraries
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { SearchbarContext } from './providers/SearchbarProvider';
 import useAPI from './hooks/useAPI';
+import Footer from './components/footerComponents/Footer';
+import AddLocation  from './components/footerComponents/AddLocation';
+
+
 
 function App() { 
   console.log("Main load")
@@ -15,17 +20,22 @@ function App() {
 
   const { geolocation } = useContext(SearchbarContext);
 
+
   return (
     <section>
-        <Header />
         {geolocation === true && <GeolocationConditional />}
-      <div className="App">     
-        <header className="App-header" >
+      <div className="App">
+        <div className="App-header" >
+        <Header className="page-header" /> 
           {state.washrooms.length > 0 && <MapOnly
             pois={state.washrooms}
             savePoint = {savePoint}
-          />}
-        </header>
+            />}
+        <Footer 
+          className="footer-menu"
+          />
+        {/* <AddLocation className='footer-menu'/> */}
+        </div>
       </div>
     </section>
   );
