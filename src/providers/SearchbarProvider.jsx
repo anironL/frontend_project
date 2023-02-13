@@ -88,7 +88,10 @@ const SearchbarProvider = function(props){
   // Opens the searchbar 
   const [routeBarOpen, setRouteBarOpen] = useState(false);
 
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, updateGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords, searchOpen, setSearchOpen, routeBarOpen, setRouteBarOpen };
+  // Changes the routing view
+  const [routingView, setRoutingView] = useState(false);
+
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, updateGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords, searchOpen, setSearchOpen, routeBarOpen, setRouteBarOpen, routingView, setRoutingView };
 
   return (
     <SearchbarContext.Provider value = {value}>
