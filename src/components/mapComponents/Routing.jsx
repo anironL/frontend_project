@@ -21,26 +21,17 @@ export function Routing(props) {
     startCoords = props.location.coordinates
   };
   
-  let endCoords = endDestination;
+  // let endCoords = endDestination;
+  // console.log("End coords routing", endCoords)
  
   useEffect(() => {
     if (!map) return;
-    // console.log("routing lat", endDestination)
-    // const routingControl = L.Routing.control({
-    //   // waypoints: [start destination, end destination]
-    //   waypoints: [L.latLng(startCoords.latitude, startCoords.longitude), L.latLng(endCoords?.y, endCoords?.x)],
-    //   routeWhileDragging: true,
-
-    //   collapsible: true
-    // }).addTo(map);
-
-    // console.log(routingControl.getPlan())
 
     const routingControl = 
       L.Routing.control({
         waypoints: [
             L.latLng(startCoords.latitude, startCoords.longitude),
-            L.latLng(endCoords?.y, endCoords?.x)
+            L.latLng(endDestination?.y, endDestination?.x)
         ],
         routeWhileDragging: true,
         collapsible: true,
@@ -69,7 +60,7 @@ export function Routing(props) {
 
         routePoints.push({
           key: y,
-          coords: L.latLng(endCoords?.y, endCoords?.x)
+          coords: L.latLng(endDestination?.y, endDestination?.x)
         })
   
         updateRouteCoords(routePoints)

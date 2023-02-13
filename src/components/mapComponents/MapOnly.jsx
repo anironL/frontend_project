@@ -13,7 +13,7 @@ import { getMapBounds, filterDistance, filterKey } from '../../helpers/map_helpe
 import { SearchbarContext } from "../../providers/SearchbarProvider";
 
 export default function MapOnly(props) {
-  const { distFilter,  geolocation, startLocation, livelocation, routeCoords } = useContext(SearchbarContext);
+  const { distFilter,  geolocation, startLocation, endLocation, livelocation, routeCoords } = useContext(SearchbarContext);
   const { NewPoint, pois } = useSaveClickLocation(props.pois);
   
   let poisDistFiltered = filterDistance(startLocation, pois,distFilter.distance)
@@ -25,7 +25,6 @@ export default function MapOnly(props) {
   }
 
   let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
-
 
   return (
     <MapContainer bounds={getMapBounds(poisKeyFiltered)} scrollWheelZoom={true}>
@@ -60,5 +59,3 @@ export default function MapOnly(props) {
     </MapContainer>
     )
 }
-
-
