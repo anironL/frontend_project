@@ -13,7 +13,7 @@ import { getMapBounds, filterDistance, filterKey } from '../../helpers/map_helpe
 import { SearchbarContext } from "../../providers/SearchbarProvider";
 
 export default function MapOnly(props) {
-  const { distFilter,  geolocation, startLocation, endLocation, livelocation, routeCoords } = useContext(SearchbarContext);
+  const { distFilter,  geolocation, startLocation, endLocation, livelocation, routeCoords, routingView, updateRoutingView } = useContext(SearchbarContext);
   const { NewPoint, pois } = useSaveClickLocation(props.pois);
   
   let poisDistFiltered = filterDistance(startLocation, pois,distFilter.distance)
@@ -47,12 +47,12 @@ export default function MapOnly(props) {
           point = {point}
         />
       ))}
-      {routeCoords.length > 0 && 
+      {routingView && routeCoords.length > 0 && 
         <MemoizedMapRouting 
           pois = {pois}
         />}
 
-        {livelocation.loaded && <MemoizedRouting location={livelocation} />}
+        {routingView && livelocation.loaded && <MemoizedRouting location={livelocation} />}
       <NewPoint />
       <MemoizedLeafletGeoSearch />
         
