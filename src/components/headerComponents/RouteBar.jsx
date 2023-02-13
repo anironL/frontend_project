@@ -1,15 +1,22 @@
 import * as React from 'react';
-import Autocomplete, { Typography } from '@mui/material';
-import { useState } from 'react';
+import { Typography, Button } from '@mui/material';
+import { useState, useContext } from 'react';
 import { 
   AppBar
 } from '@mui/material';        
-import {  } from '@emotion/react';
 import AutocompleteSearch from './AutocompleteSearch';
+import { SearchbarContext } from '../../providers/SearchbarProvider.jsx';
+
 // ${process.env.REACT_APP_PROXY_URL}
 
 export default function RouteBar({ setSearchedLocation }) {
     const [query, setQuery] = useState("");
+    const { geolocation, updateGeolocation } = useContext(SearchbarContext);
+
+    const handleGeo = () => {
+      updateGeolocation(!geolocation);
+      console.log("Geo On? " + geolocation);
+    };
   
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -35,7 +42,12 @@ export default function RouteBar({ setSearchedLocation }) {
         background: "white"
       }}>
         
-        <Typography style={{ color: "black", padding: "10px", borderRadius: "5px", width: "80%"}}>Start:</Typography><AutocompleteSearch 
+        <Typography style={{ color: "black", padding: "10px", borderRadius: "5px", width: "80%"}}>Start:</Typography>
+        <Button
+          onClick={handleGeo}
+          >Geolocate</Button>
+        
+        <AutocompleteSearch 
           update="start"
           />
         <Typography 

@@ -4,7 +4,7 @@ import { SearchbarContext } from "../../providers/SearchbarProvider";
 
 export function MapMarkers(props) {
   const map = useMap()
-  const { updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
+  const { updateStartLocation, updateEndLocation, routingView } = useContext(SearchbarContext);
   
   // useEffect(() => {
   //   console.log("Start Loc Changed: " + JSON.stringify(startLocation));
@@ -33,20 +33,25 @@ export function MapMarkers(props) {
     >
       <Popup>
         {props.point.name}
-        <button
-          onClick={() => {
-            updateStartLocation({latitude: props.point.latitude, longitude: props.point.longitude});
-            
-            map.setView([props.point.latitude, props.point.longitude], currentZoom)
-          }
-          }
-            >
-            Set Start Location
-        </button>
-        <button
-          onClick={() => updateEndLocation({y: props.point.latitude, x: props.point.longitude})}>
-            Set Destination
-        </button>
+
+        {routingView && 
+        <>
+          <button
+            onClick={() => {
+              updateStartLocation({latitude: props.point.latitude, longitude: props.point.longitude});
+              
+              map.setView([props.point.latitude, props.point.longitude], currentZoom)
+            }
+            }
+              >
+              Set Start Location
+          </button>
+          <button
+            onClick={() => updateEndLocation({y: props.point.latitude, x: props.point.longitude})}>
+              Set Destination
+          </button>
+        </>
+        }
       </Popup>
     </Marker>
   )

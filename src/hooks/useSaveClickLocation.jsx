@@ -16,8 +16,20 @@ export default function useSaveClickLocation(props) {
     const [pois, setPois] = useState(props);
     const [markers, setMarkers] = useState([]);
 
-    const { startLocation, updateStartLocation, updateEndLocation } = useContext(SearchbarContext);
+    const { startLocation, updateStartLocation, updateEndLocation, routingView } = useContext(SearchbarContext);
     const { savePoint } = useAPI();
+
+    let buttons = '';
+
+    if (routingView) {
+      buttons = `
+      <button id="set-start-pos"}>
+      Set Start Location
+      </button>
+      <button id="set-end-pos"}>
+      Set End Location
+      </button>`
+    }
     
     function NewPoint() {
       const map = useMapEvents({
@@ -56,12 +68,7 @@ export default function useSaveClickLocation(props) {
               <button type="submit" id="confirm-save">Save</button>
             </form>
           
-              <button id="set-start-pos"}>
-              Set Start Location
-              </button>
-              <button id="set-end-pos"}>
-              Set End Location
-              </button>`, {
+              ${buttons}`, {
               closeButton: true,
               closeOnClick: true,
               autoClose: true,

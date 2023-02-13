@@ -11,6 +11,6 @@ export default function GeolocationConditional() {
   console.log("Conditional render go")
 
   return (
-    <p>Geolocation Component Rendering</p>
+    <></>
   )
 }

@@ -54,8 +54,6 @@ export default function MapOnly(props) {
 
         {routingView && livelocation.loaded && <MemoizedRouting location={livelocation} />}
       <NewPoint />
-      <MemoizedLeafletGeoSearch />
-        
     </MapContainer>
     )
 }

@@ -29,9 +29,8 @@ import { SearchbarContext } from '../../providers/SearchbarProvider.jsx';
 export default function Header() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [filterOpen, setFilterOpen] = React.useState(false);
-  const { searchOpen, setSearchOpen, routeBarOpen} = useContext(SearchbarContext);
+  const { searchOpen, routeBarOpen} = useContext(SearchbarContext);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -45,16 +44,8 @@ export default function Header() {
     setAnchorEl(null);
   };
 
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
-
   const handleFilter = () => {
     setFilterOpen(!filterOpen);
-  };
-
-  const handleSearchBar = () => {
-    setSearchOpen(!searchOpen);
   };
 
   const openAccessibiltySettings = () => {
@@ -82,14 +73,6 @@ export default function Header() {
             IncLoo
           </Typography>
             <div>
-              <IconButton
-                size="large"
-                aria-label="find current location"
-                onClick={handleSearchBar}
-                color="inherit"
-              >
-                <RouteIcon />
-              </IconButton>
               <IconButton
                 size="large"
                 aria-label="filter washroom results"
