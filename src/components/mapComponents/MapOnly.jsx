@@ -6,8 +6,8 @@ import MapRouting from './MapRouting';
 
 
 // Hooks, Helpers, & Providers
-import { useContext } from "react"
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { useContext, useEffect } from "react";
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import useClickLocation from '../../hooks/useSaveClickLocation';
 import { getMapBounds, filterDistance, filterKey } from '../../helpers/map_helpers.js'
 import { SearchbarContext } from "../../providers/SearchbarProvider";
@@ -25,10 +25,10 @@ export default function MapOnly(props) {
   }
 
   let poisKeyFiltered = filterKey( distFilter, poisDistFiltered)
-  
+
 
   return (
-    <MapContainer bounds={getMapBounds(props.pois)} scrollWheelZoom={true}>
+    <MapContainer bounds={getMapBounds(poisKeyFiltered)} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -6,15 +6,20 @@ import MapOnly from './components/mapComponents/MapOnly';
 import GeolocationConditional from './components/GeolocationConditional';
 
 // Hooks & libraries
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { SearchbarContext } from './providers/SearchbarProvider';
 import useAPI from './hooks/useAPI';
+import Footer from './components/footerComponents/Footer';
+import AddLocation  from './components/footerComponents/AddLocation';
+
+
 
 function App() { 
   console.log("Main load")
   const { state, savePoint } = useAPI();
 
   const { geolocation } = useContext(SearchbarContext);
+
 
   return (
     <section>
@@ -25,7 +30,11 @@ function App() {
           {state.washrooms.length > 0 && <MapOnly
             pois={state.washrooms}
             savePoint = {savePoint}
-          />}
+            />}
+        <Footer 
+          className="footer-menu"
+          />
+        {/* <AddLocation className='footer-menu'/> */}
         </div>
       </div>
     </section>

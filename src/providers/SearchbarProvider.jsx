@@ -80,7 +80,10 @@ const SearchbarProvider = function(props){
     // console.log("New coordinates", coords)
   }
   
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords };
+  // Opens the searchbar 
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords, searchOpen, setSearchOpen };
 
   return (
     <SearchbarContext.Provider value = {value}>

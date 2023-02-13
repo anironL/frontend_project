@@ -12,7 +12,7 @@ export default function FilterDistance(props) {
 
   return (
   <Slider
-    aria-label="Temperature"
+    aria-label="Distance Filter Slider"
     defaultValue={1000}
     getAriaValueText={valuetext}
     valueLabelDisplay="auto"
