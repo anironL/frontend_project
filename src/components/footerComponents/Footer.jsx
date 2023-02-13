@@ -9,10 +9,15 @@ import { SearchbarContext } from '../../providers/SearchbarProvider.jsx';
 export default function Footer() {
   const [value, setValue] = useState(0);
 
-  const { searchOpen, setSearchOpen } = useContext(SearchbarContext);
+  const { searchOpen, setSearchOpen, updateGeolocation } = useContext(SearchbarContext);
 
   const handleSearchBar = () => {
     setSearchOpen(!searchOpen);
+    updateGeolocation(false);
+  };
+
+  const handleNearYou = () => {
+    updateGeolocation(true);
   };
 
   return (
@@ -31,7 +36,11 @@ export default function Footer() {
     }
   }}
 >
-  <BottomNavigationAction label="Near You" icon={<LocationOnIcon sx={{ fontSize: 50 }} />} />
+  <BottomNavigationAction 
+    label="Near You" 
+    onClick={handleNearYou} 
+    icon={<LocationOnIcon 
+    sx={{ fontSize: 50 }} />} />
   <BottomNavigationAction label="Near A Location" 
     onClick={handleSearchBar}
     icon={<TravelExploreIcon 

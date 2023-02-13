@@ -40,7 +40,7 @@ export default function useSaveClickLocation(props) {
             .bindPopup(`
               Added point at ${lat},${lng}.
               <br/><br/>
-              <form>
+              <form id="point-form">
               <label for="title">Title:</label>
               <input type="text" id="title" name="name" value="Fake Title"><br><br>
             
@@ -53,7 +53,7 @@ export default function useSaveClickLocation(props) {
               <label for="key3">Key 3:</label>
               <input type="checkbox" id="key3" name="key3" value="false"><br><br>
             
-              <input type="submit" id="confirm-save">
+              <button type="submit" id="confirm-save">Save</button>
             </form>
           
               <button id="set-start-pos"}>
@@ -69,7 +69,7 @@ export default function useSaveClickLocation(props) {
             })
             .openPopup();
 
-          document.getElementById("confirm-save").addEventListener("click", function(e) {
+          document.getElementById("point-form").addEventListener("submit", function(e) {
             e.preventDefault();
             // Get the values from the form
             const title = document.getElementById("title").value;

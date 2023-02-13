@@ -41,12 +41,13 @@ const SearchbarProvider = function(props){
     }
   })
 
-  const toggleGeolocation = function () {
-    if (geolocation === false) {
-      setGeolocation(true)
-    } else {
-      setGeolocation(false)
-    }
+  const updateGeolocation = function (input) {
+    setGeolocation(input);
+    // if (geolocation === false) {
+    //   setGeolocation(true)
+    // } else {
+    //   setGeolocation(false)
+    // }
   }
   
   const updateLivelocation = function (input) {
@@ -83,7 +84,7 @@ const SearchbarProvider = function(props){
   // Opens the searchbar 
   const [searchOpen, setSearchOpen] = useState(false);
 
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, toggleGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords, searchOpen, setSearchOpen };
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, updateGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords, searchOpen, setSearchOpen };
 
   return (
     <SearchbarContext.Provider value = {value}>

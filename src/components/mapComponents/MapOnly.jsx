@@ -34,7 +34,7 @@ export default function MapOnly(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
       
-      {livelocation.loaded && !(livelocation.error) && (
+      {geolocation === true && livelocation.loaded && !(livelocation.error) && (
         <Marker position = {[
           livelocation.coordinates.latitude,
           livelocation.coordinates.longitude
