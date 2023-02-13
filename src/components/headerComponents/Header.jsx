@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useContext } from 'react';
 import FilterBar from "./FilterBar.jsx";
 import SearchBar from "./SearchBar.jsx";
+import RouteBar from './RouteBar.jsx';
 import { 
   AppBar, 
   Box, 
@@ -30,7 +31,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [filterOpen, setFilterOpen] = React.useState(false);
-  const { searchOpen, setSearchOpen } = useContext(SearchbarContext);
+  const { searchOpen, setSearchOpen, routeBarOpen} = useContext(SearchbarContext);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -152,6 +153,9 @@ export default function Header() {
         )}
       {searchOpen && (
         <SearchBar />
+        )}
+      {routeBarOpen && (
+        <RouteBar />
         )}
     </Box>
   );

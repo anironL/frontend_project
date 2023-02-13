@@ -10,7 +10,7 @@ import { SearchbarContext } from '../../providers/SearchbarProvider.jsx';
 export default function Footer() {
   const [value, setValue] = useState(0);
 
-  const { searchOpen, setSearchOpen, updateGeolocation } = useContext(SearchbarContext);
+  const { searchOpen, setSearchOpen, updateGeolocation, setRouteBarOpen, routeBarOpen } = useContext(SearchbarContext);
 
   const handleSearchBar = () => {
     setSearchOpen(!searchOpen);
@@ -20,6 +20,11 @@ export default function Footer() {
   const handleNearYou = () => {
     updateGeolocation(true);
   };
+
+  const handleRouteBar = () => {
+    setRouteBarOpen(!routeBarOpen);
+  };
+
 
   return (
     <BottomNavigation
@@ -49,7 +54,7 @@ export default function Footer() {
     sx={{ fontSize: 50 }} />} />
   <BottomNavigationAction 
     label="Along A Route" 
-    onClick={handleSearchBar}
+    onClick={handleRouteBar}
     icon={<RouteIcon 
     sx={{ fontSize: 50 }} />} />
   </BottomNavigation>

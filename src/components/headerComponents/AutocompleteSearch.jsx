@@ -27,7 +27,7 @@ const AutocompleteSearch = (props) => {
         types: ["address"],
         componentRestrictions: { country: "ca" },
       }}
-      style={{ padding: "10px", borderRadius: "5px", width: "90%"}}
+      style={{ padding: "10px", borderRadius: "5px", width: "80%"}}
       defaultValue="Toronto"
       className={props.className}
     />
