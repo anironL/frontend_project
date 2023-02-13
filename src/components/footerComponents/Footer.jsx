@@ -16,15 +16,19 @@ export default function Footer() {
     setSearchOpen(!searchOpen);
     updateGeolocation(false);
     setRoutingView(false);
+    setRouteBarOpen(false);
   };
 
   const handleNearYou = () => {
     updateGeolocation(true);
+    setSearchOpen(false);
     setRoutingView(false);
+    setRouteBarOpen(false);
   };
 
   const handleRouteBar = () => {
     setRouteBarOpen(!routeBarOpen);
+    setSearchOpen(false);
     setRoutingView(true);
   };
 
