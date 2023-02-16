@@ -19,18 +19,6 @@ export default function useSaveClickLocation(props) {
     const { startLocation, updateStartLocation, updateEndLocation, routingView } = useContext(SearchbarContext);
     const { savePoint } = useAPI();
 
-    let buttons = '';
-
-    if (routingView) {
-      buttons = `
-      <button id="set-start-pos"}>
-      Set Start Location
-      </button>
-      <button id="set-end-pos"}>
-      Set End Location
-      </button>`
-    }
-    
     function NewPoint() {
       const map = useMapEvents({
         click: (e) => {
@@ -39,6 +27,18 @@ export default function useSaveClickLocation(props) {
           let marker;
           if (markers.length > 0) {
             map.removeLayer(markers[0]);
+          }
+
+          let buttons = '';
+    
+          if (routingView) {
+            buttons = `
+            <button id="set-start-pos"}>
+            Set Start Location
+            </button>
+            <button id="set-end-pos"}>
+            Set End Location
+            </button>`
           }
 
           let currentZoom = map.getZoom();
@@ -110,10 +110,11 @@ export default function useSaveClickLocation(props) {
             marker.closePopup();
           });
 
+          setMarkers([marker]);
+
           document.getElementById("set-start-pos").addEventListener("click", function(e) {
             updateStartLocation({latitude: lat, longitude: lng});
             marker.closePopup();
-            console.log(startLocation)
           });
 
           document.getElementById("set-end-pos").addEventListener("click", function(e) {
@@ -125,8 +126,6 @@ export default function useSaveClickLocation(props) {
             map.removeLayer(marker);
             setMarkers([]);
           });
-    
-          setMarkers([marker]);
         }
       });
       return null;

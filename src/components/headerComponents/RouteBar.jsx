@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, TextField } from '@mui/material';
 import { useState, useContext } from 'react';
 import { 
   AppBar
@@ -33,29 +33,67 @@ export default function RouteBar({ setSearchedLocation }) {
         lng: data[0].lon,
       });
     };
-    return ( <AppBar sx={{ 
-        padding: '1rem', 
-        position: 'static',
-        display: 'inline-flex', 
-        top: '64px', 
-        width: '100%', 
-        background: "white"
-      }}>
-        
-        <Typography style={{ color: "black", padding: "10px", borderRadius: "5px", width: "80%"}}>Start:</Typography>
-        <Button
-          onClick={handleGeo}
-          >Geolocate</Button>
-        
-        <AutocompleteSearch 
-          update="start"
-          />
-        <Typography 
-          style={{ color: "black", padding: "10px", borderRadius: "5px", width: "80%"}}>End:</Typography>
-        <AutocompleteSearch 
-          update="end"
-          />
+    return (
+      <AppBar
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "1rem",
+          position: "static",
+          top: "64px",
+          width: "100%"
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flex: 0, width: "95%", margin: 5, marginLeft: -40}}>
+          <Typography
+            style={{
+              width: 50,
+              textAlign: "left"
+            }}
+          >
+            Start
+          </Typography>
+          <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+        }}>
+          <Button onClick={handleGeo} variant="contained" style={{ whiteSpace: "nowrap" }}>
+            Find Me
+          </Button>
+          <div style={{
+              color: "black",
+              width: "100%",
+              marginLeft: 5
+            }}>
+           <AutocompleteSearch update="start" style={{
+              color: "black"
+            }}/>
+            </div>
+          </div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flex: 0, width: "95%", marginLeft: -40 }}>
+          <div style={{ display: "flex", alignItems: "center", flex: 1 }}>
+          <Typography
+            style={{
+              width: 50,
+              textAlign: "left"
+            }}
+          >
+            End
+          </Typography>
+          <div style={{
+              color: "black",
+              width: "100%"
+            }}>
+          <AutocompleteSearch style={{ marginRight: "10px" }} update="end" />
+          </div>
+          </div>
+        </div>
       </AppBar>
- )
 
+    );
+    
 }

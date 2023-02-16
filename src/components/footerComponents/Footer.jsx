@@ -10,24 +10,27 @@ import { SearchbarContext } from '../../providers/SearchbarProvider.jsx';
 export default function Footer() {
   const [value, setValue] = useState(0);
 
-  const { searchOpen, setSearchOpen, updateGeolocation, setRouteBarOpen, routeBarOpen, setRoutingView } = useContext(SearchbarContext);
+  const { setSearchOpen, updateGeolocation, setRouteBarOpen, setRoutingView, setFilterOpen } = useContext(SearchbarContext);
 
   const handleSearchBar = () => {
-    setSearchOpen(!searchOpen);
-    updateGeolocation(false);
-    setRoutingView(false);
+    setSearchOpen(true);
+    setFilterOpen(false);
     setRouteBarOpen(false);
+    setRoutingView(false);
+    updateGeolocation(false);
   };
 
   const handleNearYou = () => {
     updateGeolocation(true);
+    setFilterOpen(false);
     setSearchOpen(false);
-    setRoutingView(false);
     setRouteBarOpen(false);
+    setRoutingView(false);
   };
 
   const handleRouteBar = () => {
-    setRouteBarOpen(!routeBarOpen);
+    setRouteBarOpen(true);
+    setFilterOpen(false);
     setSearchOpen(false);
     setRoutingView(true);
   };

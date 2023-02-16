@@ -11,33 +11,39 @@ import AutocompleteSearch from './AutocompleteSearch';
 export default function SearchBar({ setSearchedLocation }) {
     const [query, setQuery] = useState("");
   
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+    // const handleSubmit = async (event) => {
+    //   event.preventDefault();
   
-      // Use a geocoding API to get the latitude and longitude of the searched location
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${query}&format=json`
-      );
-      const data = await response.json();
+    //   // Use a geocoding API to get the latitude and longitude of the searched location
+    //   const response = await fetch(
+    //     `https://nominatim.openstreetmap.org/search?q=${query}&format=json`
+    //   );
+    //   const data = await response.json();
   
-      // Set the searched location
-      setSearchedLocation({
-        lat: data[0].lat,
-        lng: data[0].lon,
-      });
-    };
+    //   // Set the searched location
+    //   setSearchedLocation({
+    //     lat: data[0].lat,
+    //     lng: data[0].lon,
+    //   });
+    // };
     return ( <AppBar sx={{ 
         padding: '1rem', 
         position: 'static',
         display: 'inline-flex', 
         top: '64px', 
-        width: '100%', 
-        background: "white"
+        width: '100%'
       }}>
-        
+        <div style={{
+          display: "flex",
+            width: "100%"
+          }}>
         <AutocompleteSearch 
           update="start"
+          style={{
+            width: "100%"
+          }}
           />
+        </div>
       </AppBar>
  )
 

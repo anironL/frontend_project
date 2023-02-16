@@ -1,26 +1,37 @@
-import React, { useContext, memo, useEffect } from "react"
-import { Marker, Popup, useMap } from 'react-leaflet'
+import React, { useContext, memo, useEffect, useMemo } from "react"
+import { Marker, Popup, useMap, useMapEvent } from 'react-leaflet'
+import L from "leaflet";
 import { SearchbarContext } from "../../providers/SearchbarProvider";
 
 export function MapMarkers(props) {
-  const map = useMap()
-  const { updateStartLocation, updateEndLocation, routingView } = useContext(SearchbarContext);
+  const map = useMap();
+  const setViewOnClick = (latlng) => {
+    console.log("latlng" + latlng);
+    map.setView(latlng, 12);
+    return null
+  }
+
+  const { updateStartLocation, updateEndLocation, routingView, mapCenterView } = useContext(SearchbarContext);
   
-  // useEffect(() => {
-  //   console.log("Start Loc Changed: " + JSON.stringify(startLocation));
-  //   map.panTo(startLocation)
-  // }, [startLocation]);
-
-
-
   let currentZoom = map.getZoom();
+
+  const setNewView = (coords) => {
+    console.log("newView");
+    map.setView(L.latLng(coords.latitude, coords.longitude), currentZoom);}
+
+  useMemo(() => {
+    if (mapCenterView) {
+      // setNewView(mapCenterView);
+    }
+  }, [mapCenterView]);
+
   // console.log("zoom", currentZoom)
 
-  map.on('popupopen', function(e) {
-    var px = map.project(e.popup._latlng);
-    px.y -= e.popup._container.clientHeight/2;
-    map.panTo(map.unproject(px), {animate: true});
-  });
+  // map.on('popupopen', function(e) {
+  //   var px = map.project(e.popup._latlng);
+  //   px.y -= e.popup._container.clientHeight/2;
+  //   map.panTo(map.unproject(px), {animate: true});
+  // });
 
   return (
     <Marker
@@ -29,7 +40,11 @@ export function MapMarkers(props) {
         props.point.latitude,
         props.point.longitude
       ]}
-      // onClick={map.setView([props.point.latitude, props.point.longitude])}
+      eventHandlers={{
+        click: (e) => {
+          setViewOnClick(e.latlng);
+        },
+      }}
     >
       <Popup>
         {props.point.name}

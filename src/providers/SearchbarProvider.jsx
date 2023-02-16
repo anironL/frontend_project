@@ -53,6 +53,7 @@ const SearchbarProvider = function(props){
   const updateLivelocation = function (input) {
     // console.log(input)
     setLivelocation(input);
+    setMapCenterView(input.coordinates);
   }
 
   // State to manage location position set by user
@@ -62,8 +63,9 @@ const SearchbarProvider = function(props){
   })
   
   const updateStartLocation = function (input) {
+    console.log(input)
     setStartLocation(input);
-    console.log(startLocation)
+    setMapCenterView(input);
   }
 
   // State to manage end position set by user
@@ -71,7 +73,6 @@ const SearchbarProvider = function(props){
 
   const updateEndLocation = function (input) {
     setEndDestination(input);
-    console.log("update endLocation", endDestination);
   }
 
   // State to manage coordinates in route
@@ -91,11 +92,13 @@ const SearchbarProvider = function(props){
   //show/hide routing
   const [routingView, setRoutingView] = useState(false);
 
-  const updateRoutingView = () => {
-    routingView === false ? setRoutingView(true) : setRoutingView(false);
-  }
+  const [mapCenterView, setMapCenterView] = useState("");
 
-  const value = { distFilter, updateKeys, updateDistFilter, geolocation, updateGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords, searchOpen, setSearchOpen, routeBarOpen, setRouteBarOpen, routingView, setRoutingView, updateRoutingView };
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  const [currentTheme, setCurrentTheme] = useState("light");
+
+  const value = { distFilter, updateKeys, updateDistFilter, geolocation, updateGeolocation, livelocation, updateLivelocation, startLocation, updateStartLocation, endDestination, setEndDestination, updateEndLocation, routeCoords, updateRouteCoords, searchOpen, setSearchOpen, routeBarOpen, setRouteBarOpen, routingView, setRoutingView, mapCenterView, setMapCenterView, filterOpen, setFilterOpen, currentTheme, setCurrentTheme };
 
   return (
     <SearchbarContext.Provider value = {value}>

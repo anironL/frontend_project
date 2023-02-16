@@ -3,7 +3,8 @@ import { SearchbarContext } from '../../providers/SearchbarProvider';
 
 //MUI Imports
 import Slider from '@mui/material/Slider';
-import { TextField } from '@mui/material';
+import { TextField, InputAdornment, Typography } from '@mui/material';
+import { Directions } from '@mui/icons-material';
 
 function valuetext(value) {
   return `${value} km`;
@@ -24,36 +25,56 @@ export default function FilterDistance(props) {
 
   const inputProps = {
     step: 250,
-    min: 0
+    min: 0,
+    style: {
+      padding: 6,
+      width: 80
+    }
   };
 
-  function valuetext(value) {
-    if (value <= 10) return `${value.toFixed(2)} km`;
-    else if (value <= 100) return `${Math.round(value)} km`;
-    else if (value <= 10000) return `${(value / 1000).toFixed(1)} km`;
-    else return `${(value / 1000).toFixed(0)} km`;
-  }
-  
-
   return (
-    <div>
-      <Slider
-        aria-label="Distance Filter Slider"
-        value={value}
-        getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
-        step={1}      
-        min={0}
-        max={50000}
-        onChange={handleSliderChange}
-      />
-      <TextField
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "80%",
+      color: "black"
+    }}>
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "95%",
+      background: "white",
+      borderRadius: "4px",
+      padding: "8px 8px 8px 8px"
+    }}>
+    <div style={{display: "flex", flexDirection: "rows", justifyContent: 'space-between', width: "100%"}}>
+    <Typography sx={{textAlign: 'left'}}>Filter Distance</Typography>
+    <TextField
         type="number"
         value={value}
         min={0}
         inputProps={inputProps}
         onChange={handleTextFieldChange}
-      /> km 
+        endAdornment={<InputAdornment position="end">km</InputAdornment>}
+      /> 
+    </div>
+    <div style={{width: "100%"}}>
+      <Slider
+        aria-label="Distance Filter Slider"
+        value={value}
+        getAriaValueText={valuetext}
+        valueLabelDisplay="auto"
+        step={1000}      
+        min={0}
+        max={50000}
+        onChange={handleSliderChange}
+      />
+    </div>
+    </div>
     </div>
   );
 }

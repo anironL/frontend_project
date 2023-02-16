@@ -5,6 +5,8 @@ import { SearchbarContext } from '../../providers/SearchbarProvider';
 const AutocompleteSearch = (props) => {
   const { updateStartLocation, updateEndLocation } = React.useContext(SearchbarContext)
 
+  const defaultValue = "Toronto"
+
   const apiKey = "AIzaSyBXxqq68-fUj86nSuBdusPPy3wD7a0dxxE&callback=Function.prototype";
   return ( 
     <Autocomplete
@@ -24,11 +26,11 @@ const AutocompleteSearch = (props) => {
         
       }}
       options={{
-        types: ["address"],
+        types: ["geocode"],
         componentRestrictions: { country: "ca" },
       }}
-      style={{ padding: "10px", borderRadius: "5px", width: "80%"}}
-      defaultValue="Toronto"
+      style={{ padding: "10px", borderRadius: "5px", width: "100%"}}
+      defaultValue={defaultValue}
       className={props.className}
     />
   );

@@ -6,22 +6,39 @@ import MapOnly from './components/mapComponents/MapOnly';
 import GeolocationConditional from './components/GeolocationConditional';
 
 // Hooks & libraries
-import { useContext, useState } from 'react'
+import { useContext, useMemo } from 'react'
 import { SearchbarContext } from './providers/SearchbarProvider';
 import useAPI from './hooks/useAPI';
 import Footer from './components/footerComponents/Footer';
-import AddLocation  from './components/footerComponents/AddLocation';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
 
 
 function App() { 
   console.log("Main load")
   const { state, savePoint } = useAPI();
 
-  const { geolocation } = useContext(SearchbarContext);
+  const { geolocation, currentTheme } = useContext(SearchbarContext);
 
+  const theme = useMemo(() => {
+    return currentTheme === "light" ? lightTheme : darkTheme;
+  }, [currentTheme]);
 
   return (
+    <ThemeProvider theme={theme}>
+    <CssBaseline />
     <section>
         {geolocation === true && <GeolocationConditional />}
       <div className="App">
@@ -38,6 +55,7 @@ function App() {
         </div>
       </div>
     </section>
+    </ThemeProvider>
   );
 }
 
